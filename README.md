@@ -1,6 +1,6 @@
 # EVM Transaction Spammer
 
-**High-performance, weaponized transaction load generator for EVM networks.**
+**High-performance transaction load generator for EVM networks.**
 
 [![Documentation](https://img.shields.io/badge/docs-tx--spammer.vercel.app-blue?style=for-the-badge&logo=vercel)](https://tx-spammer.vercel.app/)
 [![npm version](https://img.shields.io/npm/v/@developeruche/tx-spammer-sdk?style=for-the-badge)](https://www.npmjs.com/package/@developeruche/tx-spammer-sdk)
