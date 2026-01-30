@@ -73,6 +73,15 @@ async function main() {
 
     // 3. Contract Write Spam (write_one)
     console.log('\n--- Stage 3: ContractWrite Spam (write_one) ---');
+
+    // Capture state before
+    const initialRead = await publicClient.readContract({
+        address: spammerAddress,
+        abi: SPAMMER_ABI,
+        functionName: 'read_one',
+    }) as any;
+    // console.log('Initial State Hash (partial):', toHex(initialRead.r_1d[0]));
+
     const writeConfig: SpamSequenceConfig = {
         rpcUrl: RPC_URL,
         chainId: 31337,
@@ -90,6 +99,25 @@ async function main() {
     const orchestrator3 = new SpamOrchestrator(writeConfig, ROOT_PRIVATE_KEY as `0x${string}`);
     await orchestrator3.setup(parseEther('0.1'));
     await orchestrator3.start();
+
+    // Verify state change
+    const finalRead = await publicClient.readContract({
+        address: spammerAddress,
+        abi: SPAMMER_ABI,
+        functionName: 'read_one',
+    }) as any;
+
+    // Check if 1d mapping changed (just check first element)
+    const initialVal = initialRead.r_1d[0];
+    const finalVal = finalRead.r_1d[0];
+
+    if (initialVal !== finalVal) {
+        console.log(`✅ State Verification PASSED: value changed from ${initialVal} to ${finalVal}`);
+    } else {
+        console.warn(`⚠️ State Verification FAILED: value did not change (${initialVal})`);
+        // Note: If block.timestamp didn't change (fast spam in same block?), it might be same. 
+        // But with durationSeconds=5, it should change.
+    }
 
 
     // 4. Contract Read Spam (read_one)

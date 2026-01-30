@@ -3,6 +3,15 @@ import { ContractReadConfig } from '../types';
 import { GasGuardian } from '../GasGuardian';
 import { PublicClient } from 'viem';
 
+/**
+ * Executes a read-only contract call (eth_call).
+ * Does not check gas limits since it's off-chain, but puts load on the RPC node.
+ * 
+ * @param worker The worker instance performing the read.
+ * @param config The read configuration (contract, method, args).
+ * @param gasGuardian The gas guardian (unused for blocking reads).
+ * @param publicClient The viem client to perform the call.
+ */
 export async function executeContractRead(
     worker: Worker,
     config: ContractReadConfig,
@@ -15,11 +24,8 @@ export async function executeContractRead(
     // However, if we want to limit the *spam load*, we might count it or not.
     // Given the "29M Gas Cap" constraint usually applies to blocks/throughput, 
     // and reads don't fill blocks, maybe we don't count them against the Guardian?
-    // BUT the prompt says "GasGuardian... tracks cumulative gas used". 
+    // BUT the prompt tracks cumulative gas used. 
     // eth_calls don't use gas on chain. I will NOT count them towards the cap unless specified.
-
-    // Actually, checking the prompt: "If the sequence hits this cap, the spammer must gracefully halt."
-    // It's likely about block saturation. So reads shouldn't count.
 
     try {
         await publicClient.readContract({

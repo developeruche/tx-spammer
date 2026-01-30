@@ -9,7 +9,7 @@ import {
     createPublicClient
 } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
-import { mainnet } from 'viem/chains'; // Default, can be overridden
+import { mainnet } from 'viem/chains';
 import { SpamSequenceConfig, SpamSequenceConfigSchema } from './types';
 import { GasGuardian } from './GasGuardian';
 import { Worker } from './Worker';
@@ -20,6 +20,16 @@ import {
     executeContractWrite
 } from './strategies';
 
+/**
+ * The central coordinator for the spam sequence.
+ * 
+ * Responsibilities:
+ * - Validates configuration.
+ * - Initializes the root wallet and worker wallets.
+ * - Funds workers from the root account.
+ * - Manages the lifecycle of the spam sequence.
+ * - Orchestrates different strategies (Single or Mixed) by dispatching workers.
+ */
 export class SpamOrchestrator {
     private config: SpamSequenceConfig;
     private rootAccount: Account;
@@ -29,6 +39,10 @@ export class SpamOrchestrator {
     private gasGuardian: GasGuardian;
     private chain: Chain;
 
+    /**
+     * @param config The spam sequence configuration.
+     * @param rootPrivateKey The private key of the funding account.
+     */
     constructor(config: SpamSequenceConfig, rootPrivateKey: `0x${string}`) {
         // Validate config
         this.config = SpamSequenceConfigSchema.parse(config);
@@ -50,9 +64,11 @@ export class SpamOrchestrator {
         this.gasGuardian = new GasGuardian(this.config.maxGasLimit);
     }
 
+
     /**
-     * Setup Flow: Create workers and fund them.
-     * @param fundingAmount Amount of ETH to send to each worker.
+     * Sets up the spam environment by creating worker wallets and funding them.
+     * 
+     * @param fundingAmount The amount of ETH (in wei) to send to each worker. Defaults to 1 ETH.
      */
     public async setup(fundingAmount: bigint = parseEther('1')): Promise<void> {
         console.log(`Setting up ${this.config.concurrency} workers...`);
@@ -92,6 +108,15 @@ export class SpamOrchestrator {
         console.log("Setup complete.");
     }
 
+    /**
+     * Starts the spam sequence based on the configured strategy.
+     * 
+     * Supports:
+     * - Single Strategy: All workers execute the same task.
+     * - Mixed Strategy: Workers are partitioned based on percentage allocation.
+     * 
+     * Stops when the duration expires or gas limits are reached.
+     */
     public async start(): Promise<void> {
         console.log("Starting spam sequence...");
         const strategy = this.config.strategy;
