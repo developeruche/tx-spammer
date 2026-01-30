@@ -31,10 +31,7 @@ contract SpammerTest is Test {
         Spammer.Result_One memory afterRes = spammer.read_one();
 
         // Value should change because of new timestamp
-        assertFalse(
-            beforeRes.r_1d[0] == afterRes.r_1d[0],
-            "r_1d should change after write_one"
-        );
+        assertFalse(beforeRes.r_1d[0] == afterRes.r_1d[0], "r_1d should change after write_one");
     }
 
     function testReadTwo() public {
@@ -42,10 +39,7 @@ contract SpammerTest is Test {
 
         // Basic sanity checks
         assertFalse(res.r_1d[0] == 0, "r_1d should not be zero");
-        assertFalse(
-            res.r_2da[0] == address(0),
-            "r_2da should not be zero address"
-        );
+        assertFalse(res.r_2da[0] == address(0), "r_2da should not be zero address");
     }
 
     function testWriteTwo() public {
@@ -57,14 +51,8 @@ contract SpammerTest is Test {
 
         Spammer.Result_Two memory afterRes = spammer.read_two();
 
-        assertFalse(
-            beforeRes.r_1d[0] == afterRes.r_1d[0],
-            "r_1d should change after write_two (via write_one)"
-        );
-        assertFalse(
-            beforeRes.r_2da[0] == afterRes.r_2da[0],
-            "r_2da should change after write_two"
-        );
+        assertFalse(beforeRes.r_1d[0] == afterRes.r_1d[0], "r_1d should change after write_two (via write_one)");
+        assertFalse(beforeRes.r_2da[0] == afterRes.r_2da[0], "r_2da should change after write_two");
     }
 
     function testReadThree() public {
@@ -72,10 +60,7 @@ contract SpammerTest is Test {
 
         // Basic sanity checks
         assertFalse(res.r_1d[0] == 0, "r_1d should not be zero");
-        assertFalse(
-            res.r_3db[0] == bytes32(0),
-            "r_3db should not be zero bytes"
-        );
+        assertFalse(res.r_3db[0] == bytes32(0), "r_3db should not be zero bytes");
     }
 
     function testWriteThree() public {
@@ -88,16 +73,9 @@ contract SpammerTest is Test {
         Spammer.Result_Three memory afterRes = spammer.read_three();
 
         assertFalse(
-            beforeRes.r_1d[0] == afterRes.r_1d[0],
-            "r_1d should change after write_three (via write_two -> write_one)"
+            beforeRes.r_1d[0] == afterRes.r_1d[0], "r_1d should change after write_three (via write_two -> write_one)"
         );
-        assertFalse(
-            beforeRes.r_2da[0] == afterRes.r_2da[0],
-            "r_2da should change after write_three (via write_two)"
-        );
-        assertFalse(
-            beforeRes.r_3db[0] == afterRes.r_3db[0],
-            "r_3db should change after write_three"
-        );
+        assertFalse(beforeRes.r_2da[0] == afterRes.r_2da[0], "r_2da should change after write_three (via write_two)");
+        assertFalse(beforeRes.r_3db[0] == afterRes.r_3db[0], "r_3db should change after write_three");
     }
 }

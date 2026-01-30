@@ -26,47 +26,27 @@ contract Spammer {
     uint256 public constant ConstantUint256_10 =
         3264298902840367610842488557027791257854333893453722375653019111003822541146;
 
-    address public constant ConstantAddress_1 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_2 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_3 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_4 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_5 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_6 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_7 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_8 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_9 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
-    address public constant ConstantAddress_10 =
-        0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_1 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_2 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_3 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_4 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_5 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_6 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_7 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_8 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_9 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
+    address public constant ConstantAddress_10 = 0x75cc09358F100583d66F5277138bfB476345dC1B;
 
-    bytes32 public constant ConstantBytes32_1 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_2 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_3 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_4 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_5 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_6 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_7 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_8 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_9 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
-    bytes32 public constant ConstantBytes32_10 =
-        0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_1 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_2 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_3 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_4 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_5 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_6 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_7 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_8 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_9 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
+    bytes32 public constant ConstantBytes32_10 = 0x07378717ae548106c4b38cbefffae84e0d2a8e23168a0264468d84704298c95a;
 
     // ================================================
     // Structs
@@ -126,12 +106,9 @@ contract Spammer {
     mapping(address => mapping(address => bytes32)) public mapping_2d_bytes32;
 
     // 3 D
-    mapping(address => mapping(address => mapping(address => uint256)))
-        public mapping_3d;
-    mapping(address => mapping(address => mapping(address => address)))
-        public mapping_3d_address;
-    mapping(address => mapping(address => mapping(address => bytes32)))
-        public mapping_3d_bytes32;
+    mapping(address => mapping(address => mapping(address => uint256))) public mapping_3d;
+    mapping(address => mapping(address => mapping(address => address))) public mapping_3d_address;
+    mapping(address => mapping(address => mapping(address => bytes32))) public mapping_3d_bytes32;
 
     struct Result_One {
         uint256[3] r_1d;
@@ -189,188 +166,126 @@ contract Spammer {
     mapping(address => mapping(address => Struct_3)) public mapping_2d_struct_3;
 
     // 3D with Struct
-    mapping(address => mapping(address => mapping(address => Struct_1)))
-        public mapping_3d_struct_1;
-    mapping(address => mapping(address => mapping(address => Struct_2)))
-        public mapping_3d_struct_2;
-    mapping(address => mapping(address => mapping(address => Struct_3)))
-        public mapping_3d_struct_3;
+    mapping(address => mapping(address => mapping(address => Struct_1))) public mapping_3d_struct_1;
+    mapping(address => mapping(address => mapping(address => Struct_2))) public mapping_3d_struct_2;
+    mapping(address => mapping(address => mapping(address => Struct_3))) public mapping_3d_struct_3;
 
     // 1 D read keys
-    address public constant D1_read_keys_address_1 =
-        0x09371A71Ae8F666004E1B2A506c0eEdA4a79ccE8;
-    address public constant D1_read_keys_address_2 =
-        0xe688b84b23f322a994A53dbF8E15FA82CDB71127;
-    address public constant D1_read_keys_address_3 =
-        0xaCCaC8e7ADb651cbD269b851181C7b4Eb9bd332A;
+    address public constant D1_read_keys_address_1 = 0x09371A71Ae8F666004E1B2A506c0eEdA4a79ccE8;
+    address public constant D1_read_keys_address_2 = 0xe688b84b23f322a994A53dbF8E15FA82CDB71127;
+    address public constant D1_read_keys_address_3 = 0xaCCaC8e7ADb651cbD269b851181C7b4Eb9bd332A;
 
     // 2 D read keys
-    address public constant D2_stage_1_read_keys_address_1 =
-        0xe1c0DC9937319d17bf63ff73bEfd47A87810C8a8;
-    address public constant D2_stage_1_read_keys_address_2 =
-        0xfD62020Cee216Dc543E29752058Ee9f60f7D9Ff9;
-    address public constant D2_stage_1_read_keys_address_3 =
-        0x945fE55105c82806aFB6c637C66cFAD61eEA5B77;
+    address public constant D2_stage_1_read_keys_address_1 = 0xe1c0DC9937319d17bf63ff73bEfd47A87810C8a8;
+    address public constant D2_stage_1_read_keys_address_2 = 0xfD62020Cee216Dc543E29752058Ee9f60f7D9Ff9;
+    address public constant D2_stage_1_read_keys_address_3 = 0x945fE55105c82806aFB6c637C66cFAD61eEA5B77;
 
-    address public constant D2_stage_2_read_keys_address_1 =
-        0x69C0e44cfE9fDd9683255E4D41652eF2Fd4FfB32;
-    address public constant D2_stage_2_read_keys_address_2 =
-        0x94E0d7Bf4385C266d93818b6CB728Cf024554AA0;
-    address public constant D2_stage_2_read_keys_address_3 =
-        0xc0007D8c810becE9B3199Bb65799145165F9437C;
+    address public constant D2_stage_2_read_keys_address_1 = 0x69C0e44cfE9fDd9683255E4D41652eF2Fd4FfB32;
+    address public constant D2_stage_2_read_keys_address_2 = 0x94E0d7Bf4385C266d93818b6CB728Cf024554AA0;
+    address public constant D2_stage_2_read_keys_address_3 = 0xc0007D8c810becE9B3199Bb65799145165F9437C;
 
     // 3 D read keys
-    address public constant D3_stage_1_read_keys_address_1 =
-        0xe1c0DC9937319d17bf63ff73bEfd47A87810C8a8;
-    address public constant D3_stage_1_read_keys_address_2 =
-        0xfD62020Cee216Dc543E29752058Ee9f60f7D9Ff9;
-    address public constant D3_stage_1_read_keys_address_3 =
-        0x69C0e44cfE9fDd9683255E4D41652eF2Fd4FfB32;
+    address public constant D3_stage_1_read_keys_address_1 = 0xe1c0DC9937319d17bf63ff73bEfd47A87810C8a8;
+    address public constant D3_stage_1_read_keys_address_2 = 0xfD62020Cee216Dc543E29752058Ee9f60f7D9Ff9;
+    address public constant D3_stage_1_read_keys_address_3 = 0x69C0e44cfE9fDd9683255E4D41652eF2Fd4FfB32;
 
-    address public constant D3_stage_2_read_keys_address_1 =
-        0x727ab98FbF6df0C0cF2B1ECEE9BfB9b70f1b1857;
-    address public constant D3_stage_2_read_keys_address_2 =
-        0x945fE55105c82806aFB6c637C66cFAD61eEA5B77;
-    address public constant D3_stage_2_read_keys_address_3 =
-        0x3D6bF18DE84dA25d519974DA38bE7990D115436e;
+    address public constant D3_stage_2_read_keys_address_1 = 0x727ab98FbF6df0C0cF2B1ECEE9BfB9b70f1b1857;
+    address public constant D3_stage_2_read_keys_address_2 = 0x945fE55105c82806aFB6c637C66cFAD61eEA5B77;
+    address public constant D3_stage_2_read_keys_address_3 = 0x3D6bF18DE84dA25d519974DA38bE7990D115436e;
 
-    address public constant D3_stage_3_read_keys_address_1 =
-        0x9866c16098A278246CF313DA88B386C61060B93B;
-    address public constant D3_stage_3_read_keys_address_2 =
-        0x8122842ce1B636EB7F7144B42089A4D7025085bB;
-    address public constant D3_stage_3_read_keys_address_3 =
-        0x94E0d7Bf4385C266d93818b6CB728Cf024554AA0;
+    address public constant D3_stage_3_read_keys_address_1 = 0x9866c16098A278246CF313DA88B386C61060B93B;
+    address public constant D3_stage_3_read_keys_address_2 = 0x8122842ce1B636EB7F7144B42089A4D7025085bB;
+    address public constant D3_stage_3_read_keys_address_3 = 0x94E0d7Bf4385C266d93818b6CB728Cf024554AA0;
 
     // 1D Struct read keys
-    address public constant Struct_1_read_keys_address_1 =
-        0x04B79F7F444a1983e6034a4442B85ED8576259e6;
-    address public constant Struct_1_read_keys_address_2 =
-        0x70C068C0d639C8184d758CD467d2aee8D789dC67;
-    address public constant Struct_1_read_keys_address_3 =
-        0xBEEDD84b868A3282d9D2B724f0ACbDe280678888;
+    address public constant Struct_1_read_keys_address_1 = 0x04B79F7F444a1983e6034a4442B85ED8576259e6;
+    address public constant Struct_1_read_keys_address_2 = 0x70C068C0d639C8184d758CD467d2aee8D789dC67;
+    address public constant Struct_1_read_keys_address_3 = 0xBEEDD84b868A3282d9D2B724f0ACbDe280678888;
 
     // 2D Struct read keys
-    address public constant Struct_2_read_keys_address_1 =
-        0xe92e65049b3c2ca12806E9567B08895118c5a03f;
-    address public constant Struct_2_read_keys_address_2 =
-        0x2CfF890f0378a11913B6129B2E97417a2c302680;
-    address public constant Struct_2_read_keys_address_3 =
-        0x88F7388B0108f6fABA4E9dB888A66ef83657846b;
+    address public constant Struct_2_read_keys_address_1 = 0xe92e65049b3c2ca12806E9567B08895118c5a03f;
+    address public constant Struct_2_read_keys_address_2 = 0x2CfF890f0378a11913B6129B2E97417a2c302680;
+    address public constant Struct_2_read_keys_address_3 = 0x88F7388B0108f6fABA4E9dB888A66ef83657846b;
 
-    address public constant Struct_2_stage_2_read_keys_address_1 =
-        0x1592010A9858f156617457D34d93912064A162C4;
-    address public constant Struct_2_stage_2_read_keys_address_2 =
-        0x04a66650Ca5fcAd2c59a5544776841fD7bb1De0a;
-    address public constant Struct_2_stage_2_read_keys_address_3 =
-        0xDBBab478129857Ca7acD2E6444a39613d7737b26;
+    address public constant Struct_2_stage_2_read_keys_address_1 = 0x1592010A9858f156617457D34d93912064A162C4;
+    address public constant Struct_2_stage_2_read_keys_address_2 = 0x04a66650Ca5fcAd2c59a5544776841fD7bb1De0a;
+    address public constant Struct_2_stage_2_read_keys_address_3 = 0xDBBab478129857Ca7acD2E6444a39613d7737b26;
 
     // 3D Struct read keys
-    address public constant Struct_3_read_keys_address_1 =
-        0x23f311709dA08E7939fcbA1f67367ffc7F40f525;
-    address public constant Struct_3_read_keys_address_2 =
-        0xf62624324bFd9DCA76095cEEC877A0946F0d3C4D;
-    address public constant Struct_3_read_keys_address_3 =
-        0xA7EfBd09D86b0EC510594B15f8a892F867bEDF7A;
+    address public constant Struct_3_read_keys_address_1 = 0x23f311709dA08E7939fcbA1f67367ffc7F40f525;
+    address public constant Struct_3_read_keys_address_2 = 0xf62624324bFd9DCA76095cEEC877A0946F0d3C4D;
+    address public constant Struct_3_read_keys_address_3 = 0xA7EfBd09D86b0EC510594B15f8a892F867bEDF7A;
 
-    address public constant Struct_3_stage_2_read_keys_address_1 =
-        0xf626ec1ef676b5399c64c344AC9825646F0D3c4d;
-    address public constant Struct_3_stage_2_read_keys_address_2 =
-        0x945F7b00678C83Cb86cCF65b302ED20d8caa5b77;
-    address public constant Struct_3_stage_2_read_keys_address_3 =
-        0x4dc2A3Ace8CDF0988c617C59A2d3C7af84fCa217;
+    address public constant Struct_3_stage_2_read_keys_address_1 = 0xf626ec1ef676b5399c64c344AC9825646F0D3c4d;
+    address public constant Struct_3_stage_2_read_keys_address_2 = 0x945F7b00678C83Cb86cCF65b302ED20d8caa5b77;
+    address public constant Struct_3_stage_2_read_keys_address_3 = 0x4dc2A3Ace8CDF0988c617C59A2d3C7af84fCa217;
 
-    address public constant Struct_3_stage_3_read_keys_address_1 =
-        0xFE31d026F3f285927EfcB1C2Ee8558b4d7CF2141;
-    address public constant Struct_3_stage_3_read_keys_address_2 =
-        0x83F765f5e13273949BcdbF0B3C02c4bfb350F46A;
-    address public constant Struct_3_stage_3_read_keys_address_3 =
-        0x1D107293b9836d3B333978Da6ff7a9943C2a0b16;
+    address public constant Struct_3_stage_3_read_keys_address_1 = 0xFE31d026F3f285927EfcB1C2Ee8558b4d7CF2141;
+    address public constant Struct_3_stage_3_read_keys_address_2 = 0x83F765f5e13273949BcdbF0B3C02c4bfb350F46A;
+    address public constant Struct_3_stage_3_read_keys_address_3 = 0x1D107293b9836d3B333978Da6ff7a9943C2a0b16;
 
     function _randomUint(uint256 seed) internal view returns (uint256) {
-        return
-            uint256(keccak256(abi.encodePacked(block.timestamp, seed, "uint")));
+        return uint256(keccak256(abi.encodePacked(block.timestamp, seed, "uint")));
     }
 
     function _randomAddress(uint256 seed) internal view returns (address) {
-        return
-            address(
-                uint160(
-                    uint256(
-                        keccak256(
-                            abi.encodePacked(block.timestamp, seed, "address")
-                        )
-                    )
-                )
-            );
+        return address(uint160(uint256(keccak256(abi.encodePacked(block.timestamp, seed, "address")))));
     }
 
     function _randomBytes32(uint256 seed) internal view returns (bytes32) {
         return keccak256(abi.encodePacked(block.timestamp, seed, "bytes32"));
     }
 
-    function _randomStruct1(
-        uint256 seed
-    ) internal view returns (Struct_1 memory) {
-        return
-            Struct_1(
-                _randomUint(seed),
-                _randomUint(seed + 1),
-                _randomUint(seed + 2),
-                _randomUint(seed + 3),
-                _randomUint(seed + 4),
-                _randomUint(seed + 5),
-                _randomUint(seed + 6),
-                _randomUint(seed + 7),
-                _randomUint(seed + 8),
-                _randomUint(seed + 9)
-            );
+    function _randomStruct1(uint256 seed) internal view returns (Struct_1 memory) {
+        return Struct_1(
+            _randomUint(seed),
+            _randomUint(seed + 1),
+            _randomUint(seed + 2),
+            _randomUint(seed + 3),
+            _randomUint(seed + 4),
+            _randomUint(seed + 5),
+            _randomUint(seed + 6),
+            _randomUint(seed + 7),
+            _randomUint(seed + 8),
+            _randomUint(seed + 9)
+        );
     }
 
-    function _randomStruct2(
-        uint256 seed
-    ) internal view returns (Struct_2 memory) {
-        return
-            Struct_2(
-                _randomAddress(seed),
-                _randomAddress(seed + 1),
-                _randomAddress(seed + 2),
-                _randomAddress(seed + 3),
-                _randomAddress(seed + 4),
-                _randomAddress(seed + 5),
-                _randomAddress(seed + 6),
-                _randomAddress(seed + 7),
-                _randomAddress(seed + 8),
-                _randomAddress(seed + 9)
-            );
+    function _randomStruct2(uint256 seed) internal view returns (Struct_2 memory) {
+        return Struct_2(
+            _randomAddress(seed),
+            _randomAddress(seed + 1),
+            _randomAddress(seed + 2),
+            _randomAddress(seed + 3),
+            _randomAddress(seed + 4),
+            _randomAddress(seed + 5),
+            _randomAddress(seed + 6),
+            _randomAddress(seed + 7),
+            _randomAddress(seed + 8),
+            _randomAddress(seed + 9)
+        );
     }
 
-    function _randomStruct3(
-        uint256 seed
-    ) internal view returns (Struct_3 memory) {
-        return
-            Struct_3(
-                _randomBytes32(seed),
-                _randomBytes32(seed + 1),
-                _randomBytes32(seed + 2),
-                _randomBytes32(seed + 3),
-                _randomBytes32(seed + 4),
-                _randomBytes32(seed + 5),
-                _randomBytes32(seed + 6),
-                _randomBytes32(seed + 7),
-                _randomBytes32(seed + 8),
-                _randomBytes32(seed + 9)
-            );
+    function _randomStruct3(uint256 seed) internal view returns (Struct_3 memory) {
+        return Struct_3(
+            _randomBytes32(seed),
+            _randomBytes32(seed + 1),
+            _randomBytes32(seed + 2),
+            _randomBytes32(seed + 3),
+            _randomBytes32(seed + 4),
+            _randomBytes32(seed + 5),
+            _randomBytes32(seed + 6),
+            _randomBytes32(seed + 7),
+            _randomBytes32(seed + 8),
+            _randomBytes32(seed + 9)
+        );
     }
 
     constructor() {
         // 1D
         {
-            address[3] memory keys = [
-                D1_read_keys_address_1,
-                D1_read_keys_address_2,
-                D1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys = [D1_read_keys_address_1, D1_read_keys_address_2, D1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(keys[i]));
                 mapping_1d[keys[i]] = _randomUint(seed);
                 mapping_1d_address[keys[i]] = _randomAddress(seed);
@@ -380,17 +295,11 @@ contract Spammer {
 
         // 2D
         {
-            address[3] memory k1 = [
-                D2_stage_1_read_keys_address_1,
-                D2_stage_1_read_keys_address_2,
-                D2_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D2_stage_2_read_keys_address_1,
-                D2_stage_2_read_keys_address_2,
-                D2_stage_2_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory k1 =
+                [D2_stage_1_read_keys_address_1, D2_stage_1_read_keys_address_2, D2_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D2_stage_2_read_keys_address_1, D2_stage_2_read_keys_address_2, D2_stage_2_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]));
                 mapping_2d[k1[i]][k2[i]] = _randomUint(seed);
                 mapping_2d_address[k1[i]][k2[i]] = _randomAddress(seed);
@@ -400,25 +309,14 @@ contract Spammer {
 
         // 3D
         {
-            address[3] memory k1 = [
-                D3_stage_1_read_keys_address_1,
-                D3_stage_1_read_keys_address_2,
-                D3_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D3_stage_2_read_keys_address_1,
-                D3_stage_2_read_keys_address_2,
-                D3_stage_2_read_keys_address_3
-            ];
-            address[3] memory k3 = [
-                D3_stage_3_read_keys_address_1,
-                D3_stage_3_read_keys_address_2,
-                D3_stage_3_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(
-                    uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])
-                );
+            address[3] memory k1 =
+                [D3_stage_1_read_keys_address_1, D3_stage_1_read_keys_address_2, D3_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D3_stage_2_read_keys_address_1, D3_stage_2_read_keys_address_2, D3_stage_2_read_keys_address_3];
+            address[3] memory k3 =
+                [D3_stage_3_read_keys_address_1, D3_stage_3_read_keys_address_2, D3_stage_3_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i]));
                 mapping_3d[k1[i]][k2[i]][k3[i]] = _randomUint(seed);
                 mapping_3d_address[k1[i]][k2[i]][k3[i]] = _randomAddress(seed);
                 mapping_3d_bytes32[k1[i]][k2[i]][k3[i]] = _randomBytes32(seed);
@@ -427,12 +325,9 @@ contract Spammer {
 
         // 1D Struct
         {
-            address[3] memory keys = [
-                Struct_1_read_keys_address_1,
-                Struct_1_read_keys_address_2,
-                Struct_1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys =
+                [Struct_1_read_keys_address_1, Struct_1_read_keys_address_2, Struct_1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(keys[i]));
                 mapping_1d_struct_1[keys[i]] = _randomStruct1(seed);
                 mapping_1d_struct_2[keys[i]] = _randomStruct2(seed);
@@ -442,17 +337,14 @@ contract Spammer {
 
         // 2D Struct
         {
-            address[3] memory k1 = [
-                Struct_2_read_keys_address_1,
-                Struct_2_read_keys_address_2,
-                Struct_2_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_2_read_keys_address_1, Struct_2_read_keys_address_2, Struct_2_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_2_stage_2_read_keys_address_1,
                 Struct_2_stage_2_read_keys_address_2,
                 Struct_2_stage_2_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]));
                 mapping_2d_struct_1[k1[i]][k2[i]] = _randomStruct1(seed);
                 mapping_2d_struct_2[k1[i]][k2[i]] = _randomStruct2(seed);
@@ -462,11 +354,8 @@ contract Spammer {
 
         // 3D Struct
         {
-            address[3] memory k1 = [
-                Struct_3_read_keys_address_1,
-                Struct_3_read_keys_address_2,
-                Struct_3_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_3_read_keys_address_1, Struct_3_read_keys_address_2, Struct_3_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_3_stage_2_read_keys_address_1,
                 Struct_3_stage_2_read_keys_address_2,
@@ -477,10 +366,8 @@ contract Spammer {
                 Struct_3_stage_3_read_keys_address_2,
                 Struct_3_stage_3_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(
-                    uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])
-                );
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i]));
                 mapping_3d_struct_1[k1[i]][k2[i]][k3[i]] = _randomStruct1(seed);
                 mapping_3d_struct_2[k1[i]][k2[i]][k3[i]] = _randomStruct2(seed);
                 mapping_3d_struct_3[k1[i]][k2[i]][k3[i]] = _randomStruct3(seed);
@@ -491,86 +378,58 @@ contract Spammer {
     function read_one() public view returns (Result_One memory res) {
         // 1D
         {
-            address[3] memory keys = [
-                D1_read_keys_address_1,
-                D1_read_keys_address_2,
-                D1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys = [D1_read_keys_address_1, D1_read_keys_address_2, D1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_1d[i] = mapping_1d[keys[i]];
             }
         }
         // 2D
         {
-            address[3] memory k1 = [
-                D2_stage_1_read_keys_address_1,
-                D2_stage_1_read_keys_address_2,
-                D2_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D2_stage_2_read_keys_address_1,
-                D2_stage_2_read_keys_address_2,
-                D2_stage_2_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory k1 =
+                [D2_stage_1_read_keys_address_1, D2_stage_1_read_keys_address_2, D2_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D2_stage_2_read_keys_address_1, D2_stage_2_read_keys_address_2, D2_stage_2_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_2d[i] = mapping_2d[k1[i]][k2[i]];
             }
         }
         // 3D
         {
-            address[3] memory k1 = [
-                D3_stage_1_read_keys_address_1,
-                D3_stage_1_read_keys_address_2,
-                D3_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D3_stage_2_read_keys_address_1,
-                D3_stage_2_read_keys_address_2,
-                D3_stage_2_read_keys_address_3
-            ];
-            address[3] memory k3 = [
-                D3_stage_3_read_keys_address_1,
-                D3_stage_3_read_keys_address_2,
-                D3_stage_3_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory k1 =
+                [D3_stage_1_read_keys_address_1, D3_stage_1_read_keys_address_2, D3_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D3_stage_2_read_keys_address_1, D3_stage_2_read_keys_address_2, D3_stage_2_read_keys_address_3];
+            address[3] memory k3 =
+                [D3_stage_3_read_keys_address_1, D3_stage_3_read_keys_address_2, D3_stage_3_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_3d[i] = mapping_3d[k1[i]][k2[i]][k3[i]];
             }
         }
         // 1D Struct 1
         {
-            address[3] memory keys = [
-                Struct_1_read_keys_address_1,
-                Struct_1_read_keys_address_2,
-                Struct_1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys =
+                [Struct_1_read_keys_address_1, Struct_1_read_keys_address_2, Struct_1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_1ds1[i] = mapping_1d_struct_1[keys[i]];
             }
         }
         // 2D Struct 1
         {
-            address[3] memory k1 = [
-                Struct_2_read_keys_address_1,
-                Struct_2_read_keys_address_2,
-                Struct_2_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_2_read_keys_address_1, Struct_2_read_keys_address_2, Struct_2_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_2_stage_2_read_keys_address_1,
                 Struct_2_stage_2_read_keys_address_2,
                 Struct_2_stage_2_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_2ds1[i] = mapping_2d_struct_1[k1[i]][k2[i]];
             }
         }
         // 3D Struct 1
         {
-            address[3] memory k1 = [
-                Struct_3_read_keys_address_1,
-                Struct_3_read_keys_address_2,
-                Struct_3_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_3_read_keys_address_1, Struct_3_read_keys_address_2, Struct_3_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_3_stage_2_read_keys_address_1,
                 Struct_3_stage_2_read_keys_address_2,
@@ -581,7 +440,7 @@ contract Spammer {
                 Struct_3_stage_3_read_keys_address_2,
                 Struct_3_stage_3_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_3ds1[i] = mapping_3d_struct_1[k1[i]][k2[i]][k3[i]];
             }
         }
@@ -601,82 +460,59 @@ contract Spammer {
 
         // 1D Addr
         {
-            address[3] memory keys = [
-                D1_read_keys_address_1,
-                D1_read_keys_address_2,
-                D1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++)
+            address[3] memory keys = [D1_read_keys_address_1, D1_read_keys_address_2, D1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_1da[i] = mapping_1d_address[keys[i]];
+            }
         }
         // 2D Addr
         {
-            address[3] memory k1 = [
-                D2_stage_1_read_keys_address_1,
-                D2_stage_1_read_keys_address_2,
-                D2_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D2_stage_2_read_keys_address_1,
-                D2_stage_2_read_keys_address_2,
-                D2_stage_2_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++)
+            address[3] memory k1 =
+                [D2_stage_1_read_keys_address_1, D2_stage_1_read_keys_address_2, D2_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D2_stage_2_read_keys_address_1, D2_stage_2_read_keys_address_2, D2_stage_2_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_2da[i] = mapping_2d_address[k1[i]][k2[i]];
+            }
         }
         // 3D Addr
         {
-            address[3] memory k1 = [
-                D3_stage_1_read_keys_address_1,
-                D3_stage_1_read_keys_address_2,
-                D3_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D3_stage_2_read_keys_address_1,
-                D3_stage_2_read_keys_address_2,
-                D3_stage_2_read_keys_address_3
-            ];
-            address[3] memory k3 = [
-                D3_stage_3_read_keys_address_1,
-                D3_stage_3_read_keys_address_2,
-                D3_stage_3_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++)
+            address[3] memory k1 =
+                [D3_stage_1_read_keys_address_1, D3_stage_1_read_keys_address_2, D3_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D3_stage_2_read_keys_address_1, D3_stage_2_read_keys_address_2, D3_stage_2_read_keys_address_3];
+            address[3] memory k3 =
+                [D3_stage_3_read_keys_address_1, D3_stage_3_read_keys_address_2, D3_stage_3_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_3da[i] = mapping_3d_address[k1[i]][k2[i]][k3[i]];
+            }
         }
 
         // 1D Struct 2
         {
-            address[3] memory keys = [
-                Struct_1_read_keys_address_1,
-                Struct_1_read_keys_address_2,
-                Struct_1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++)
+            address[3] memory keys =
+                [Struct_1_read_keys_address_1, Struct_1_read_keys_address_2, Struct_1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_1ds2[i] = mapping_1d_struct_2[keys[i]];
+            }
         }
         // 2D Struct 2
         {
-            address[3] memory k1 = [
-                Struct_2_read_keys_address_1,
-                Struct_2_read_keys_address_2,
-                Struct_2_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_2_read_keys_address_1, Struct_2_read_keys_address_2, Struct_2_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_2_stage_2_read_keys_address_1,
                 Struct_2_stage_2_read_keys_address_2,
                 Struct_2_stage_2_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++)
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_2ds2[i] = mapping_2d_struct_2[k1[i]][k2[i]];
+            }
         }
         // 3D Struct 2
         {
-            address[3] memory k1 = [
-                Struct_3_read_keys_address_1,
-                Struct_3_read_keys_address_2,
-                Struct_3_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_3_read_keys_address_1, Struct_3_read_keys_address_2, Struct_3_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_3_stage_2_read_keys_address_1,
                 Struct_3_stage_2_read_keys_address_2,
@@ -687,8 +523,9 @@ contract Spammer {
                 Struct_3_stage_3_read_keys_address_2,
                 Struct_3_stage_3_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++)
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_3ds2[i] = mapping_3d_struct_2[k1[i]][k2[i]][k3[i]];
+            }
         }
     }
 
@@ -712,82 +549,59 @@ contract Spammer {
 
         // 1D Bytes
         {
-            address[3] memory keys = [
-                D1_read_keys_address_1,
-                D1_read_keys_address_2,
-                D1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++)
+            address[3] memory keys = [D1_read_keys_address_1, D1_read_keys_address_2, D1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_1db[i] = mapping_1d_bytes32[keys[i]];
+            }
         }
         // 2D Bytes
         {
-            address[3] memory k1 = [
-                D2_stage_1_read_keys_address_1,
-                D2_stage_1_read_keys_address_2,
-                D2_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D2_stage_2_read_keys_address_1,
-                D2_stage_2_read_keys_address_2,
-                D2_stage_2_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++)
+            address[3] memory k1 =
+                [D2_stage_1_read_keys_address_1, D2_stage_1_read_keys_address_2, D2_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D2_stage_2_read_keys_address_1, D2_stage_2_read_keys_address_2, D2_stage_2_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_2db[i] = mapping_2d_bytes32[k1[i]][k2[i]];
+            }
         }
         // 3D Bytes
         {
-            address[3] memory k1 = [
-                D3_stage_1_read_keys_address_1,
-                D3_stage_1_read_keys_address_2,
-                D3_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D3_stage_2_read_keys_address_1,
-                D3_stage_2_read_keys_address_2,
-                D3_stage_2_read_keys_address_3
-            ];
-            address[3] memory k3 = [
-                D3_stage_3_read_keys_address_1,
-                D3_stage_3_read_keys_address_2,
-                D3_stage_3_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++)
+            address[3] memory k1 =
+                [D3_stage_1_read_keys_address_1, D3_stage_1_read_keys_address_2, D3_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D3_stage_2_read_keys_address_1, D3_stage_2_read_keys_address_2, D3_stage_2_read_keys_address_3];
+            address[3] memory k3 =
+                [D3_stage_3_read_keys_address_1, D3_stage_3_read_keys_address_2, D3_stage_3_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_3db[i] = mapping_3d_bytes32[k1[i]][k2[i]][k3[i]];
+            }
         }
 
         // 1D Struct 3
         {
-            address[3] memory keys = [
-                Struct_1_read_keys_address_1,
-                Struct_1_read_keys_address_2,
-                Struct_1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++)
+            address[3] memory keys =
+                [Struct_1_read_keys_address_1, Struct_1_read_keys_address_2, Struct_1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_1ds3[i] = mapping_1d_struct_3[keys[i]];
+            }
         }
         // 2D Struct 3
         {
-            address[3] memory k1 = [
-                Struct_2_read_keys_address_1,
-                Struct_2_read_keys_address_2,
-                Struct_2_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_2_read_keys_address_1, Struct_2_read_keys_address_2, Struct_2_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_2_stage_2_read_keys_address_1,
                 Struct_2_stage_2_read_keys_address_2,
                 Struct_2_stage_2_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++)
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_2ds3[i] = mapping_2d_struct_3[k1[i]][k2[i]];
+            }
         }
         // 3D Struct 3
         {
-            address[3] memory k1 = [
-                Struct_3_read_keys_address_1,
-                Struct_3_read_keys_address_2,
-                Struct_3_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_3_read_keys_address_1, Struct_3_read_keys_address_2, Struct_3_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_3_stage_2_read_keys_address_1,
                 Struct_3_stage_2_read_keys_address_2,
@@ -798,20 +612,17 @@ contract Spammer {
                 Struct_3_stage_3_read_keys_address_2,
                 Struct_3_stage_3_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++)
+            for (uint256 i = 0; i < 3; i++) {
                 res.r_3ds3[i] = mapping_3d_struct_3[k1[i]][k2[i]][k3[i]];
+            }
         }
     }
 
     function write_one() public {
         // 1D
         {
-            address[3] memory keys = [
-                D1_read_keys_address_1,
-                D1_read_keys_address_2,
-                D1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys = [D1_read_keys_address_1, D1_read_keys_address_2, D1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(keys[i])) + block.timestamp;
                 mapping_1d[keys[i]] = _randomUint(seed);
             }
@@ -819,56 +630,35 @@ contract Spammer {
 
         // 2D
         {
-            address[3] memory k1 = [
-                D2_stage_1_read_keys_address_1,
-                D2_stage_1_read_keys_address_2,
-                D2_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D2_stage_2_read_keys_address_1,
-                D2_stage_2_read_keys_address_2,
-                D2_stage_2_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) +
-                    block.timestamp;
+            address[3] memory k1 =
+                [D2_stage_1_read_keys_address_1, D2_stage_1_read_keys_address_2, D2_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D2_stage_2_read_keys_address_1, D2_stage_2_read_keys_address_2, D2_stage_2_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) + block.timestamp;
                 mapping_2d[k1[i]][k2[i]] = _randomUint(seed);
             }
         }
 
         // 3D
         {
-            address[3] memory k1 = [
-                D3_stage_1_read_keys_address_1,
-                D3_stage_1_read_keys_address_2,
-                D3_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D3_stage_2_read_keys_address_1,
-                D3_stage_2_read_keys_address_2,
-                D3_stage_2_read_keys_address_3
-            ];
-            address[3] memory k3 = [
-                D3_stage_3_read_keys_address_1,
-                D3_stage_3_read_keys_address_2,
-                D3_stage_3_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(
-                    uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])
-                ) + block.timestamp;
+            address[3] memory k1 =
+                [D3_stage_1_read_keys_address_1, D3_stage_1_read_keys_address_2, D3_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D3_stage_2_read_keys_address_1, D3_stage_2_read_keys_address_2, D3_stage_2_read_keys_address_3];
+            address[3] memory k3 =
+                [D3_stage_3_read_keys_address_1, D3_stage_3_read_keys_address_2, D3_stage_3_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])) + block.timestamp;
                 mapping_3d[k1[i]][k2[i]][k3[i]] = _randomUint(seed);
             }
         }
 
         // 1D Struct
         {
-            address[3] memory keys = [
-                Struct_1_read_keys_address_1,
-                Struct_1_read_keys_address_2,
-                Struct_1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys =
+                [Struct_1_read_keys_address_1, Struct_1_read_keys_address_2, Struct_1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(keys[i])) + block.timestamp;
                 mapping_1d_struct_1[keys[i]] = _randomStruct1(seed);
             }
@@ -876,30 +666,23 @@ contract Spammer {
 
         // 2D Struct
         {
-            address[3] memory k1 = [
-                Struct_2_read_keys_address_1,
-                Struct_2_read_keys_address_2,
-                Struct_2_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_2_read_keys_address_1, Struct_2_read_keys_address_2, Struct_2_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_2_stage_2_read_keys_address_1,
                 Struct_2_stage_2_read_keys_address_2,
                 Struct_2_stage_2_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) +
-                    block.timestamp;
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) + block.timestamp;
                 mapping_2d_struct_1[k1[i]][k2[i]] = _randomStruct1(seed);
             }
         }
 
         // 3D Struct
         {
-            address[3] memory k1 = [
-                Struct_3_read_keys_address_1,
-                Struct_3_read_keys_address_2,
-                Struct_3_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_3_read_keys_address_1, Struct_3_read_keys_address_2, Struct_3_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_3_stage_2_read_keys_address_1,
                 Struct_3_stage_2_read_keys_address_2,
@@ -910,10 +693,8 @@ contract Spammer {
                 Struct_3_stage_3_read_keys_address_2,
                 Struct_3_stage_3_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(
-                    uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])
-                ) + block.timestamp;
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])) + block.timestamp;
                 mapping_3d_struct_1[k1[i]][k2[i]][k3[i]] = _randomStruct1(seed);
             }
         }
@@ -924,12 +705,8 @@ contract Spammer {
 
         // 1D Address
         {
-            address[3] memory keys = [
-                D1_read_keys_address_1,
-                D1_read_keys_address_2,
-                D1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys = [D1_read_keys_address_1, D1_read_keys_address_2, D1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(keys[i])) + block.timestamp;
                 mapping_1d_address[keys[i]] = _randomAddress(seed);
             }
@@ -937,56 +714,35 @@ contract Spammer {
 
         // 2D Address
         {
-            address[3] memory k1 = [
-                D2_stage_1_read_keys_address_1,
-                D2_stage_1_read_keys_address_2,
-                D2_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D2_stage_2_read_keys_address_1,
-                D2_stage_2_read_keys_address_2,
-                D2_stage_2_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) +
-                    block.timestamp;
+            address[3] memory k1 =
+                [D2_stage_1_read_keys_address_1, D2_stage_1_read_keys_address_2, D2_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D2_stage_2_read_keys_address_1, D2_stage_2_read_keys_address_2, D2_stage_2_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) + block.timestamp;
                 mapping_2d_address[k1[i]][k2[i]] = _randomAddress(seed);
             }
         }
 
         // 3D Address
         {
-            address[3] memory k1 = [
-                D3_stage_1_read_keys_address_1,
-                D3_stage_1_read_keys_address_2,
-                D3_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D3_stage_2_read_keys_address_1,
-                D3_stage_2_read_keys_address_2,
-                D3_stage_2_read_keys_address_3
-            ];
-            address[3] memory k3 = [
-                D3_stage_3_read_keys_address_1,
-                D3_stage_3_read_keys_address_2,
-                D3_stage_3_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(
-                    uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])
-                ) + block.timestamp;
+            address[3] memory k1 =
+                [D3_stage_1_read_keys_address_1, D3_stage_1_read_keys_address_2, D3_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D3_stage_2_read_keys_address_1, D3_stage_2_read_keys_address_2, D3_stage_2_read_keys_address_3];
+            address[3] memory k3 =
+                [D3_stage_3_read_keys_address_1, D3_stage_3_read_keys_address_2, D3_stage_3_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])) + block.timestamp;
                 mapping_3d_address[k1[i]][k2[i]][k3[i]] = _randomAddress(seed);
             }
         }
 
         // 1D Struct 2
         {
-            address[3] memory keys = [
-                Struct_1_read_keys_address_1,
-                Struct_1_read_keys_address_2,
-                Struct_1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys =
+                [Struct_1_read_keys_address_1, Struct_1_read_keys_address_2, Struct_1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(keys[i])) + block.timestamp;
                 mapping_1d_struct_2[keys[i]] = _randomStruct2(seed);
             }
@@ -994,30 +750,23 @@ contract Spammer {
 
         // 2D Struct 2
         {
-            address[3] memory k1 = [
-                Struct_2_read_keys_address_1,
-                Struct_2_read_keys_address_2,
-                Struct_2_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_2_read_keys_address_1, Struct_2_read_keys_address_2, Struct_2_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_2_stage_2_read_keys_address_1,
                 Struct_2_stage_2_read_keys_address_2,
                 Struct_2_stage_2_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) +
-                    block.timestamp;
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) + block.timestamp;
                 mapping_2d_struct_2[k1[i]][k2[i]] = _randomStruct2(seed);
             }
         }
 
         // 3D Struct 2
         {
-            address[3] memory k1 = [
-                Struct_3_read_keys_address_1,
-                Struct_3_read_keys_address_2,
-                Struct_3_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_3_read_keys_address_1, Struct_3_read_keys_address_2, Struct_3_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_3_stage_2_read_keys_address_1,
                 Struct_3_stage_2_read_keys_address_2,
@@ -1028,10 +777,8 @@ contract Spammer {
                 Struct_3_stage_3_read_keys_address_2,
                 Struct_3_stage_3_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(
-                    uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])
-                ) + block.timestamp;
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])) + block.timestamp;
                 mapping_3d_struct_2[k1[i]][k2[i]][k3[i]] = _randomStruct2(seed);
             }
         }
@@ -1042,12 +789,8 @@ contract Spammer {
 
         // 1D Bytes
         {
-            address[3] memory keys = [
-                D1_read_keys_address_1,
-                D1_read_keys_address_2,
-                D1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys = [D1_read_keys_address_1, D1_read_keys_address_2, D1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(keys[i])) + block.timestamp;
                 mapping_1d_bytes32[keys[i]] = _randomBytes32(seed);
             }
@@ -1055,56 +798,35 @@ contract Spammer {
 
         // 2D Bytes
         {
-            address[3] memory k1 = [
-                D2_stage_1_read_keys_address_1,
-                D2_stage_1_read_keys_address_2,
-                D2_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D2_stage_2_read_keys_address_1,
-                D2_stage_2_read_keys_address_2,
-                D2_stage_2_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) +
-                    block.timestamp;
+            address[3] memory k1 =
+                [D2_stage_1_read_keys_address_1, D2_stage_1_read_keys_address_2, D2_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D2_stage_2_read_keys_address_1, D2_stage_2_read_keys_address_2, D2_stage_2_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) + block.timestamp;
                 mapping_2d_bytes32[k1[i]][k2[i]] = _randomBytes32(seed);
             }
         }
 
         // 3D Bytes
         {
-            address[3] memory k1 = [
-                D3_stage_1_read_keys_address_1,
-                D3_stage_1_read_keys_address_2,
-                D3_stage_1_read_keys_address_3
-            ];
-            address[3] memory k2 = [
-                D3_stage_2_read_keys_address_1,
-                D3_stage_2_read_keys_address_2,
-                D3_stage_2_read_keys_address_3
-            ];
-            address[3] memory k3 = [
-                D3_stage_3_read_keys_address_1,
-                D3_stage_3_read_keys_address_2,
-                D3_stage_3_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(
-                    uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])
-                ) + block.timestamp;
+            address[3] memory k1 =
+                [D3_stage_1_read_keys_address_1, D3_stage_1_read_keys_address_2, D3_stage_1_read_keys_address_3];
+            address[3] memory k2 =
+                [D3_stage_2_read_keys_address_1, D3_stage_2_read_keys_address_2, D3_stage_2_read_keys_address_3];
+            address[3] memory k3 =
+                [D3_stage_3_read_keys_address_1, D3_stage_3_read_keys_address_2, D3_stage_3_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])) + block.timestamp;
                 mapping_3d_bytes32[k1[i]][k2[i]][k3[i]] = _randomBytes32(seed);
             }
         }
 
         // 1D Struct 3
         {
-            address[3] memory keys = [
-                Struct_1_read_keys_address_1,
-                Struct_1_read_keys_address_2,
-                Struct_1_read_keys_address_3
-            ];
-            for (uint i = 0; i < 3; i++) {
+            address[3] memory keys =
+                [Struct_1_read_keys_address_1, Struct_1_read_keys_address_2, Struct_1_read_keys_address_3];
+            for (uint256 i = 0; i < 3; i++) {
                 uint256 seed = uint256(uint160(keys[i])) + block.timestamp;
                 mapping_1d_struct_3[keys[i]] = _randomStruct3(seed);
             }
@@ -1112,30 +834,23 @@ contract Spammer {
 
         // 2D Struct 3
         {
-            address[3] memory k1 = [
-                Struct_2_read_keys_address_1,
-                Struct_2_read_keys_address_2,
-                Struct_2_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_2_read_keys_address_1, Struct_2_read_keys_address_2, Struct_2_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_2_stage_2_read_keys_address_1,
                 Struct_2_stage_2_read_keys_address_2,
                 Struct_2_stage_2_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) +
-                    block.timestamp;
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i])) + block.timestamp;
                 mapping_2d_struct_3[k1[i]][k2[i]] = _randomStruct3(seed);
             }
         }
 
         // 3D Struct 3
         {
-            address[3] memory k1 = [
-                Struct_3_read_keys_address_1,
-                Struct_3_read_keys_address_2,
-                Struct_3_read_keys_address_3
-            ];
+            address[3] memory k1 =
+                [Struct_3_read_keys_address_1, Struct_3_read_keys_address_2, Struct_3_read_keys_address_3];
             address[3] memory k2 = [
                 Struct_3_stage_2_read_keys_address_1,
                 Struct_3_stage_2_read_keys_address_2,
@@ -1146,10 +861,8 @@ contract Spammer {
                 Struct_3_stage_3_read_keys_address_2,
                 Struct_3_stage_3_read_keys_address_3
             ];
-            for (uint i = 0; i < 3; i++) {
-                uint256 seed = uint256(
-                    uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])
-                ) + block.timestamp;
+            for (uint256 i = 0; i < 3; i++) {
+                uint256 seed = uint256(uint160(k1[i]) ^ uint160(k2[i]) ^ uint160(k3[i])) + block.timestamp;
                 mapping_3d_struct_3[k1[i]][k2[i]][k3[i]] = _randomStruct3(seed);
             }
         }
