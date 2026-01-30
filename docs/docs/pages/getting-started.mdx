@@ -1,0 +1,68 @@
+# Getting Started
+
+Follow this guide to set up your first spam sequence against a local Anvil node.
+
+## Prerequisites
+
+- **Node.js** v20+
+- **Anvil** (Foundry) running locally (`anvil`)
+
+## 1. Installation
+
+Install the package in your project:
+
+```bash
+npm install @developeruche/tx-spammer-sdk
+```
+
+## 2. Basic Usage
+
+Create a script `spam.ts` to flood the network with simple ETH transfers.
+
+```typescript
+import { SpamOrchestrator, SpamSequenceConfig } from '@developeruche/tx-spammer-sdk';
+import { parseEther } from 'viem';
+
+// 1. Define Configuration
+const config: SpamSequenceConfig = {
+    rpcUrl: 'http://127.0.0.1:8545',
+    chainId: 31337,
+    maxGasLimit: 29_000_000n, // Stop after filling ~1 block
+    concurrency: 10, // Number of parallel workers
+    strategy: {
+        mode: 'transfer',
+        amountPerTx: parseEther('0.0001'),
+        depth: 10
+    }
+};
+
+// 2. Initialize Orchestrator (with Anvil default key)
+const PRIVATE_KEY = '0xac09...'; 
+const orchestrator = new SpamOrchestrator(config, PRIVATE_KEY);
+
+// 3. Run
+async function main() {
+    await orchestrator.setup(parseEther('1')); // Fund workers with 1 ETH total
+    await orchestrator.start();
+}
+
+main();
+```
+
+## 3. Run It
+
+Execute the script (using `ts-node` or similar):
+
+```bash
+npx ts-node spam.ts
+```
+
+You should see output indicating workers are being funded, and then a stream of transactions being sent until the gas limit is reached.
+
+## Next Steps
+
+Now that you have a basic stress test running, explore more advanced capabilities:
+
+- [**Architecture**](/architecture): Understand how `GasGuardian` protects your funds.
+- [**Configuration**](/configuration): Learn about `mixed` strategies and contract interaction.
+

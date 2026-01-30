@@ -1,0 +1,70 @@
+---
+title: EVM Transaction Spammer SDK
+buttons:
+  - link: /getting-started
+    text: Get Started
+    variant: accent
+  - link: https://github.com/developeruche/witness-bench
+    text: View on GitHub
+---
+
+# EVM Transaction Spammer
+
+**A high-performance TypeScript SDK for orchestrating massive transaction loads against EVM-compatible networks.** 
+Designed for infrastructure engineers, protocol developers, and node operators who need to validate system resilience under stress.
+
+## Overview
+
+The `TxSpamSDK` solves the problem of generating realistic, high-throughput blockchain traffic. Unlike simple scripts that loop transactions, this SDK provides a structured **Orchestrator** capable of managing thousands of concurrent workers, complex mixed strategies, and strict gas boundaries.
+
+Built on top of [viem](https://viem.sh), it leverages modern asynchronous patterns to maximize throughput while maintaining a minimal memory footprint.
+
+## Key Features
+
+<div className="features-grid">
+
+### Mixed Strategy Support
+Don't just spam meaningless transfers. Configure complex load profiles like **"50% Writes, 48% Reads, 2% Deploys"** to mimic real-world network usage or specific attack vectors.
+
+### Gas Guardian
+Strictly enforce gas limits (`maxGasLimit`) across all concurrent workers. The Orchestrator tracks cumulative usage in real-time, ensuring your test sequence halts exactly when intended—preventing accidental fund drainage or testnet saturation.
+
+### Mass Concurrency
+Instantiate hundreds of ephemeral "Worker" wallets derived from a single root key. The SDK handles nonce management, funding distribution, and parallel execution automatically.
+
+### Plug-and-Play
+Zero-config support for local **Anvil** nodes. Simply plug in your RPC URL and Root Private Key, and the SDK handles the rest.
+
+</div>
+
+## Use Cases
+
+- **Node Benchmarking**: Test the throughput limits (TPS) of your execution client (Geth, Reth, etc.).
+- **Mempool Stress Testing**: Flood the network to observe transaction propagation and mempool behavior under load.
+- **Block Builder Validation**: Verify that your block builder correctly constructs blocks under high contention.
+- **Devnet Simulation**: Generate background traffic on development networks to create a "lived-in" environment for UI testing.
+
+## Installation
+
+:::code-group
+
+```bash [npm]
+npm i @developeruche/tx-spammer-sdk
+```
+
+```bash [pnpm]
+pnpm add @developeruche/tx-spammer-sdk
+```
+
+```bash [bun]
+bun add @developeruche/tx-spammer-sdk
+```
+
+:::
+
+:::warning
+**Safety First**
+This tool is a **weaponized load generator**. It consumes real ETH for every transaction sent.
+- **NEVER** run this against Mainnet unless you are explicitly stress-testing a production capability and are prepared to lose funds.
+- **ALWAYS** use with a local Anvil node (`anvil`) or a disposable testnet account with a capped balance.
+:::

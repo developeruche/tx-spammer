@@ -1,0 +1,63 @@
+# Architecture
+
+The TxSpamSDK operates in two distinct phases to ensure reliable, high-throughput load generation.
+
+## 1. Setup Phase
+
+Before any spam occurs, the `SpamManager` (or Orchestrator) prepares the environment:
+1.  **Fund Root Account**: Validates the provided root private key.
+2.  **Worker Derivation**: Generates thousands of ephemeral private keys (Workers) based on the `concurrency` setting.
+3.  **Funding**: The root account sends a small amount of ETH to each worker account to cover gas fees.
+
+## 2. Attack Phase (Spam)
+
+Once all workers are funded, the attack begins.
+
+- **Parallel Execution**: Each worker runs an independent loop.
+- **Gas Estimation**: Before sending a transaction, the worker estimates gas.
+- **GasGuardian**: A central state controller (`GasGuardian`) checks if the cumulative gas limit (e.g., 29M) has been reached. 
+- **Execution**: If within limits, the transaction is signed and broadcasted to the RPC node.
+
+## Architecture Diagram
+
+```text
++------------------+              +------------------+
+|   Root Account   |------------->|  SpamOrchestrator|
++------------------+   Funds      +--------+---------+
+                                           |
+                                           | Spawns & Manages
+                                           v
+                          +----------------------------------+
+                          |          Worker Pool             |
+                          | +----------+      +----------+   |
+                          | | Worker 1 | ...  | Worker N |   |
+                          | +----+-----+      +-----+----+   |
+                          +------+------------------+--------+
+                                 |                  |
+                                 | 1. Estimate      |
+                                 v                  |
+                          +--------------+          |
+                          |   EVM Node   |          |
+                          +------+-------+          |
+                                 |                  |
+                                 | 2. Check Limit   | 3. Send Tx
+                                 v                  v
+                          +--------------+    +--------------+
+                          | GasGuardian  |--->|   EVM Node   |
+                          +--------------+    +--------------+
+```
+
+## Core Components
+
+### SpamOrchestrator
+The central controller. It validates configuration, handles the funding lifecycle, and manages the worker pool. In "Mixed Mode," it intelligently partitions workers and gas limits according to the specified percentages.
+
+### GasGuardian
+A specialized state manager that acts as a semaphore for gas usage.
+- **Atomic Tracking**: Ensures race conditions between parallel workers don't exceed the total gas limit.
+- **Fail-Safe**: If `maxGasLimit` is hit, it immediately signals all workers to stop, preventing "over-spamming" (crucial for block building tests).
+
+### Workers
+Lightweight, ephemeral wallet instances.
+- **Local Nonce Management**: Workers track their own nonces locally to avoid the latency of `eth_getTransactionCount` calls before every transaction.
+- **Zero-Dependency**: Each worker operates independently once funded, maximizing parallel throughput.

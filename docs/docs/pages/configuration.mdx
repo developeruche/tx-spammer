@@ -1,0 +1,93 @@
+# Configuration
+
+The `SpamOrchestrator` is configured via a type-safe Zod schema.
+
+## SpamSequenceConfig
+
+The root configuration object passed to the orchestrator.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `rpcUrl` | `string` | The HTTP URL of the EVM node. |
+| `chainId` | `number` | The integer Chain ID of the network. |
+| `maxGasLimit` | `bigint` | Cumulative gas usage limit before stopping. |
+| `concurrency` | `number` | Number of simultaneous worker wallets to create. |
+| `durationSeconds` | `number` | (Optional) Max duration to run the spam in seconds. |
+| `totalTxs` | `number` | (Optional) Max number of total transactions to send. |
+| `strategy` | `SpamStrategyConfig` | The specific spam strategy to execute. |
+
+
+## SpamStrategyConfig
+
+Supports discriminated unions based on `mode`.
+
+### `transfer`
+Simple ETH transfers between accounts.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `mode` | `'transfer'` | Discriminator. |
+| `amountPerTx` | `bigint` | Amount of Wei to send per transaction. |
+
+### `deploy`
+Deploys a contract bytecode repeatedly.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `mode` | `'deploy'` | Discriminator. |
+| `bytecode` | `Hex` | The compiled contract bytecode. |
+| `abi` | `any` | The contract ABI. |
+
+### `read`
+Executes a read-only contract call (`eth_call`). Useful for stressing RPC nodes without consuming on-chain gas.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `mode` | `'read'` | Discriminator. |
+| `targetContract` | `Address` | The contract address to call. |
+| `abi` | `Abi` | The contract ABI. |
+| `functionName` | `string` | The read function to call. |
+| `args` | `any[]` | Arguments for the function. |
+
+### `write`
+Executes a state-changing contract call.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `mode` | `'write'` | Discriminator. |
+| `targetContract` | `Address` | The contract address to call. |
+| `abi` | `Abi` | The contract ABI. |
+| `functionName` | `string` | The write function to call. |
+| `argsGenerator` | `() => any[]` | A function that returns arguments per tx (dynamic). |
+| `staticArgs` | `any[]` | Static arguments for every tx. |
+
+### `mixed`
+Splits resources across multiple strategies. The sum of percentages must equal 100.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `mode` | `'mixed'` | Discriminator. |
+| `strategies` | `Array` | List of sub-strategies. |
+
+#### Mixed Strategy Example
+
+```typescript
+strategy: {
+  mode: 'mixed',
+  strategies: [
+    {
+      percentage: 10, // 10% of workers and gas
+      config: { mode: 'transfer', amountPerTx: parseEther('0.01'), depth: 1 } 
+    },
+    {
+      percentage: 90, // 90% of workers and gas
+      config: { 
+        mode: 'write', 
+        targetContract: '0x...', 
+        functionName: 'mint', 
+        staticArgs: [] 
+      }
+    }
+  ]
+}
+```

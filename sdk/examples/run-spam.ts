@@ -33,8 +33,7 @@ async function main() {
     const mixedConfig: SpamSequenceConfig = {
         rpcUrl: RPC_URL,
         chainId: 31337,
-        maxGasLimit: 10_000_000n,
-        // Need enough concurrency to see splits. 50 workers => 1 transfer, 24 reads, 25 writes
+        maxGasLimit: 30_000_000n,
         concurrency: 50,
         durationSeconds: 10,
         strategy: {
@@ -49,15 +48,6 @@ async function main() {
                     },
                 },
                 {
-                    percentage: 48,
-                    config: {
-                        mode: 'read',
-                        targetContract: spammerAddress,
-                        functionName: 'read_one',
-                        abi: SPAMMER_ABI as any,
-                    },
-                },
-                {
                     percentage: 50,
                     config: {
                         mode: 'write',
@@ -67,6 +57,14 @@ async function main() {
                         staticArgs: [],
                     },
                 },
+                {
+                    percentage: 48,
+                    config: {
+                        mode: 'deploy',
+                        bytecode: SPAMMER_BYTECODE,
+                        args: [],
+                    },
+                }
             ],
         },
     };
