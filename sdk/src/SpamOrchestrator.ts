@@ -107,13 +107,13 @@ export class SpamOrchestrator {
 
                 try {
                     if (strategy.mode === 'transfer') {
-                        await executeEthTransfer(worker, strategy, this.gasGuardian);
+                        await executeEthTransfer(worker, strategy, this.gasGuardian, this.publicClient);
                     } else if (strategy.mode === 'deploy') {
-                        await executeContractDeploy(worker, strategy, this.gasGuardian);
+                        await executeContractDeploy(worker, strategy, this.gasGuardian, this.publicClient);
                     } else if (strategy.mode === 'read') {
                         await executeContractRead(worker, strategy, this.gasGuardian, this.publicClient);
                     } else if (strategy.mode === 'write') {
-                        await executeContractWrite(worker, strategy, this.gasGuardian);
+                        await executeContractWrite(worker, strategy, this.gasGuardian, this.publicClient);
                     }
                 } catch (e: any) {
                     console.error(`Worker ${index} execution failed:`, e.message);

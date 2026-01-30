@@ -1,20 +1,24 @@
 import { Worker } from '../Worker';
 import { EthTransferConfig } from '../types';
 import { GasGuardian } from '../GasGuardian';
-import { parseEther, type Hash } from 'viem';
+import { type PublicClient } from 'viem';
 
 export async function executeEthTransfer(
     worker: Worker,
     config: EthTransferConfig,
-    gasGuardian: GasGuardian
+    gasGuardian: GasGuardian,
+    publicClient: PublicClient
 ): Promise<void> {
     const amount = config.amountPerTx;
-    const recipient = config.recipient || worker.address; // Self-transfer if no recipient
-
-    // Estimated gas for a standard transfer is 21000
-    const estimatedGas = 21000n;
+    const recipient = config.recipient || worker.address;
 
     try {
+        const estimatedGas = await publicClient.estimateGas({
+            account: worker.account,
+            to: recipient as `0x${string}`,
+            value: amount
+        });
+
         gasGuardian.checkLimit(estimatedGas);
 
         const hash = await worker.sendTransaction(
