@@ -112,6 +112,55 @@ async function main() {
     await orchestrator4.setup(parseEther('0.01')); // Cheap setup for reads
     await orchestrator4.start();
 
+    // 5. Mixed Strategy Spam
+    // "2% - ethTransfers, 48% Contract reads, 50% contract writes"
+    console.log('\n--- Stage 5: Mixed Strategy Spam ---');
+    console.log('Target: 2% Transfer, 48% Read, 50% Write');
+
+    const mixedConfig: SpamSequenceConfig = {
+        rpcUrl: RPC_URL,
+        chainId: 31337,
+        maxGasLimit: 10_000_000n,
+        // Need enough concurrency to see splits. 50 workers => 1 transfer, 24 reads, 25 writes
+        concurrency: 50,
+        durationSeconds: 10,
+        strategy: {
+            mode: 'mixed',
+            strategies: [
+                {
+                    percentage: 2,
+                    config: {
+                        mode: 'transfer',
+                        amountPerTx: parseEther('0.0001'),
+                        depth: 1,
+                    }
+                },
+                {
+                    percentage: 48,
+                    config: {
+                        mode: 'read',
+                        targetContract: spammerAddress,
+                        functionName: 'read_one',
+                        abi: SPAMMER_ABI as any,
+                    }
+                },
+                {
+                    percentage: 50,
+                    config: {
+                        mode: 'write',
+                        targetContract: spammerAddress,
+                        functionName: 'write_one',
+                        abi: SPAMMER_ABI as any,
+                        staticArgs: [],
+                    }
+                }
+            ]
+        }
+    };
+    const orchestrator5 = new SpamOrchestrator(mixedConfig, ROOT_PRIVATE_KEY as `0x${string}`);
+    await orchestrator5.setup(parseEther('0.01')); // Setup for 50 workers
+    await orchestrator5.start();
+
     console.log('\n✅ E2E Suite Completed Successfully!');
 }
 

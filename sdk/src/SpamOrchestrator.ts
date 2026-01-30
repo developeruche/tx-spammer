@@ -98,35 +98,80 @@ export class SpamOrchestrator {
         const duration = this.config.durationSeconds ? this.config.durationSeconds * 1000 : Infinity;
         const startTime = Date.now();
 
-        const tasks = this.workers.map(async (worker, index) => {
-            while (true) {
-                // Check constraints
-                if (this.gasGuardian.isLimitReached) break;
-                if (Date.now() - startTime > duration) break;
-                // TODO: check totalTxs count if implemented
+        // Helper to run a strategy loop for a subset of workers
+        const runLoop = async (
+            workers: Worker[],
+            stratConfig: any,
+            guardian: GasGuardian
+        ) => {
+            const loopTasks = workers.map(async (worker, index) => {
+                while (true) {
+                    if (guardian.isLimitReached) break;
+                    if (Date.now() - startTime > duration) break;
 
-                try {
-                    if (strategy.mode === 'transfer') {
-                        await executeEthTransfer(worker, strategy, this.gasGuardian, this.publicClient);
-                    } else if (strategy.mode === 'deploy') {
-                        await executeContractDeploy(worker, strategy, this.gasGuardian, this.publicClient);
-                    } else if (strategy.mode === 'read') {
-                        await executeContractRead(worker, strategy, this.gasGuardian, this.publicClient);
-                    } else if (strategy.mode === 'write') {
-                        await executeContractWrite(worker, strategy, this.gasGuardian, this.publicClient);
+                    try {
+                        if (stratConfig.mode === 'transfer') {
+                            await executeEthTransfer(worker, stratConfig, guardian, this.publicClient);
+                        } else if (stratConfig.mode === 'deploy') {
+                            await executeContractDeploy(worker, stratConfig, guardian, this.publicClient);
+                        } else if (stratConfig.mode === 'read') {
+                            await executeContractRead(worker, stratConfig, guardian, this.publicClient);
+                        } else if (stratConfig.mode === 'write') {
+                            await executeContractWrite(worker, stratConfig, guardian, this.publicClient);
+                        }
+                    } catch (e: any) {
+                        // console.error(`Worker execution failed:`, e.message);
+                        // Stop this worker's loop if critical constraint hit
+                        if (guardian.isLimitReached) break;
+                        // Optimization: Wait a bit on error to avoid hot-looping crashes?
+                        // await new Promise(r => setTimeout(r, 100));
                     }
-                } catch (e: any) {
-                    console.error(`Worker ${index} execution failed:`, e.message);
-                    // If gas limit reached, we want to stop everyone, but this worker loop breaks naturally on next check
-                    if (this.gasGuardian.isLimitReached) break;
-                    // For other errors, maybe we continue? or break? 
-                    // Creating a robust spammer usually means we ignore transient errors and keep going.
                 }
-            }
-        });
+            });
+            await Promise.all(loopTasks);
+        };
 
-        await Promise.all(tasks);
+        if (strategy.mode === 'mixed') {
+            console.log("Executing Mixed Strategy...");
+            let workerOffset = 0;
+            const tasks: Promise<void>[] = [];
+
+            // Sort strategies to handle remainder logic deterministically? Or just iterate.
+            for (let i = 0; i < strategy.strategies.length; i++) {
+                const subStrat = strategy.strategies[i];
+                // Calculate split
+                const isLast = i === strategy.strategies.length - 1;
+                const sharePercent = subStrat.percentage / 100;
+
+                // Workers
+                let count = Math.floor(this.config.concurrency * sharePercent);
+                if (isLast) {
+                    // Assign all remaining workers to the last group to avoid rounding loss
+                    count = this.workers.length - workerOffset;
+                }
+                if (count <= 0) continue;
+
+                const assignedWorkers = this.workers.slice(workerOffset, workerOffset + count);
+                workerOffset += count;
+
+                // Gas Limit
+                // For 'read', gas limit is effectively infinity/ignored by strategy logic, 
+                // but we can assign a portion of the max limit to its guardian just in case.
+                const gasLimitShare = BigInt(Math.floor(Number(this.config.maxGasLimit) * sharePercent));
+                const subGuardian = new GasGuardian(gasLimitShare);
+
+                console.log(`- Sub-strategy '${subStrat.config.mode}': ${count} workers, ~${gasLimitShare} gas limit`);
+
+                tasks.push(runLoop(assignedWorkers, subStrat.config, subGuardian));
+            }
+
+            await Promise.all(tasks);
+
+        } else {
+            // Single Mode
+            await runLoop(this.workers, strategy, this.gasGuardian);
+        }
+
         console.log("Spam sequence finished.");
-        console.log("Total estimated gas used:", this.gasGuardian.gasUsed.toString());
     }
 }

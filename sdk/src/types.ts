@@ -33,11 +33,31 @@ export const ContractWriteConfigSchema = z.object({
     staticArgs: z.array(z.any()).optional(),
 });
 
+// Single strategy types for reuse
+const SingleStrategySchema = z.discriminatedUnion('mode', [
+    EthTransferConfigSchema,
+    ContractDeployConfigSchema,
+    ContractReadConfigSchema,
+    ContractWriteConfigSchema,
+]);
+
+export const MixedStrategyConfigSchema = z.object({
+    mode: z.literal('mixed'),
+    strategies: z.array(z.object({
+        config: SingleStrategySchema,
+        percentage: z.number().nonnegative().max(100), // Percent of resources/gas
+    })).refine((items) => {
+        const sum = items.reduce((acc, item) => acc + item.percentage, 0);
+        return Math.abs(sum - 100) < 0.1; // Allow small float error, basically sum should be 100
+    }, { message: "Percentages must sum to 100" }),
+});
+
 export const SpamStrategySchema = z.discriminatedUnion('mode', [
     EthTransferConfigSchema,
     ContractDeployConfigSchema,
     ContractReadConfigSchema,
     ContractWriteConfigSchema,
+    MixedStrategyConfigSchema,
 ]);
 
 export const SpamSequenceConfigSchema = z.object({
@@ -56,5 +76,6 @@ export type EthTransferConfig = z.infer<typeof EthTransferConfigSchema>;
 export type ContractDeployConfig = z.infer<typeof ContractDeployConfigSchema>;
 export type ContractReadConfig = z.infer<typeof ContractReadConfigSchema>;
 export type ContractWriteConfig = z.infer<typeof ContractWriteConfigSchema>;
+export type MixedStrategyConfig = z.infer<typeof MixedStrategyConfigSchema>;
 export type SpamStrategyConfig = z.infer<typeof SpamStrategySchema>;
 export type SpamSequenceConfig = z.infer<typeof SpamSequenceConfigSchema>;
