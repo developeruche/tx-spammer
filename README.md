@@ -2,8 +2,6 @@
 
 **High-performance, weaponized transaction load generator for EVM networks.**
 
-> **⚠️  WARNING**: This tool consumes REAL ETH. Use only on local devnets (Anvil) or testnets with throwaway accounts.
-
 [![Documentation](https://img.shields.io/badge/docs-tx--spammer.vercel.app-blue?style=for-the-badge&logo=vercel)](https://tx-spammer.vercel.app/)
 [![npm version](https://img.shields.io/npm/v/@developeruche/tx-spammer-sdk?style=for-the-badge)](https://www.npmjs.com/package/@developeruche/tx-spammer-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
