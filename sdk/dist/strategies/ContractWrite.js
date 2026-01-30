@@ -1,8 +1,6 @@
-import { Worker } from '../Worker';
-import { ContractWriteConfig } from '../types';
-import { GasGuardian } from '../GasGuardian';
-import { type PublicClient } from 'viem';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.executeContractWrite = executeContractWrite;
 /**
  * Executes a state-changing contract write transaction.
  * Estimates gas and enforces limits. Supports dynamic arguments via generator or static args.
@@ -12,31 +10,23 @@ import { type PublicClient } from 'viem';
  * @param gasGuardian The gas guardian to track usage.
  * @param publicClient The viem public client for gas estimation.
  */
-export async function executeContractWrite(
-    worker: Worker,
-    config: ContractWriteConfig,
-    gasGuardian: GasGuardian,
-    publicClient: PublicClient
-): Promise<void> {
+async function executeContractWrite(worker, config, gasGuardian, publicClient) {
     try {
         // Determine args
         let args = config.staticArgs || [];
         if (config.argsGenerator) {
             args = config.argsGenerator();
         }
-
         const estimatedGas = await publicClient.estimateContractGas({
-            address: config.targetContract as `0x${string}`,
+            address: config.targetContract,
             abi: config.abi,
             functionName: config.functionName,
             args: args,
-            account: worker.account,
+            account: worker.account
         });
-
         gasGuardian.checkLimit(estimatedGas);
-
         const hash = await worker.client.writeContract({
-            address: config.targetContract as `0x${string}`,
+            address: config.targetContract,
             abi: config.abi,
             functionName: config.functionName,
             args: args,
@@ -45,9 +35,9 @@ export async function executeContractWrite(
             // @ts-ignore
             nonce: worker.getAndIncrementNonce(),
         });
-
         gasGuardian.recordUsage(estimatedGas);
-    } catch (error) {
+    }
+    catch (error) {
         throw error;
     }
 }

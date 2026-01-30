@@ -81,13 +81,20 @@ export const MixedStrategyConfigSchema = z.object({
      * List of strategies with their respective percentage allocation.
      * Percentages must sum to 100.
      */
-    strategies: z.array(z.object({
-        config: SingleStrategySchema,
-        percentage: z.number().nonnegative().max(100),
-    })).refine((items) => {
-        const sum = items.reduce((acc, item) => acc + item.percentage, 0);
-        return Math.abs(sum - 100) < 0.1; // Allow small float error
-    }, { message: "Percentages must sum to 100" }),
+    strategies: z
+        .array(
+            z.object({
+                config: SingleStrategySchema,
+                percentage: z.number().nonnegative().max(100),
+            })
+        )
+        .refine(
+            (items) => {
+                const sum = items.reduce((acc, item) => acc + item.percentage, 0);
+                return Math.abs(sum - 100) < 0.1; // Allow small float error
+            },
+            { message: 'Percentages must sum to 100' }
+        ),
 });
 
 /**
