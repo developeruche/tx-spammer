@@ -1,7 +1,7 @@
 import { Worker } from '../Worker';
 import { EthTransferConfig } from '../types';
 import { GasGuardian } from '../GasGuardian';
-import { type PublicClient } from 'viem';
+import { type PublicClient, type Hash } from 'viem';
 
 /**
  * Executes a single ETH transfer transaction.
@@ -16,7 +16,7 @@ export async function executeEthTransfer(
     config: EthTransferConfig,
     gasGuardian: GasGuardian,
     publicClient: PublicClient
-): Promise<void> {
+): Promise<Hash> {
     const amount = config.amountPerTx;
     const recipient = config.recipient || worker.address;
 
@@ -36,6 +36,7 @@ export async function executeEthTransfer(
         // For high-performance spamming, we pre-check and post-record.
         gasGuardian.recordUsage(estimatedGas);
 
+        return hash;
         // In a real recursive scenario (depth > 1), we would chain additional transfers here
         // or wait for this one to mine. For high-volume spam, we often fire-and-forget
         // or batch them if nonces allow.

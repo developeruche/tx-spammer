@@ -7,6 +7,7 @@ import {
     type Account,
     parseEther,
     createPublicClient,
+    type Hash,
 } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { mainnet } from 'viem/chains';
@@ -126,13 +127,14 @@ export class SpamOrchestrator {
      *
      * Stops when the duration expires or gas limits are reached.
      */
-    public async start(): Promise<void> {
+    public async start(): Promise<{ blockNumber: bigint; txHash: Hash | null }> {
         console.log('Starting spam sequence...');
         const strategy = this.config.strategy;
         const duration = this.config.durationSeconds
             ? this.config.durationSeconds * 1000
             : Infinity;
         const startTime = Date.now();
+        let lastTxHash: Hash | null = null;
 
         // Helper to run a strategy loop for a subset of workers
         const runLoop = async (workers: Worker[], stratConfig: any, guardian: GasGuardian) => {
@@ -142,15 +144,16 @@ export class SpamOrchestrator {
                     if (Date.now() - startTime > duration) break;
 
                     try {
+                        let txHash: Hash | undefined;
                         if (stratConfig.mode === 'transfer') {
-                            await executeEthTransfer(
+                            txHash = await executeEthTransfer(
                                 worker,
                                 stratConfig,
                                 guardian,
                                 this.publicClient as any
                             );
                         } else if (stratConfig.mode === 'deploy') {
-                            await executeContractDeploy(
+                            txHash = await executeContractDeploy(
                                 worker,
                                 stratConfig,
                                 guardian,
@@ -164,12 +167,16 @@ export class SpamOrchestrator {
                                 this.publicClient as any
                             );
                         } else if (stratConfig.mode === 'write') {
-                            await executeContractWrite(
+                            txHash = await executeContractWrite(
                                 worker,
                                 stratConfig,
                                 guardian,
                                 this.publicClient as any
                             );
+                        }
+
+                        if (txHash) {
+                            lastTxHash = txHash;
                         }
                     } catch (e: any) {
                         // console.error(`Worker execution failed:`, e.message);
@@ -228,5 +235,14 @@ export class SpamOrchestrator {
         }
 
         console.log('Spam sequence finished.');
+
+        if (lastTxHash) {
+            console.log(`Waiting for last transaction ${lastTxHash} to be mined...`);
+            const receipt = await this.publicClient.waitForTransactionReceipt({ hash: lastTxHash });
+            return { blockNumber: receipt.blockNumber, txHash: lastTxHash };
+        } else {
+            const blockNumber = await this.publicClient.getBlockNumber();
+            return { blockNumber, txHash: null };
+        }
     }
 }

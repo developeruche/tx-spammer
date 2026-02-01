@@ -1,7 +1,7 @@
 import { Worker } from '../Worker';
 import { ContractWriteConfig } from '../types';
 import { GasGuardian } from '../GasGuardian';
-import { type PublicClient } from 'viem';
+import { type PublicClient, type Hash } from 'viem';
 
 /**
  * Executes a state-changing contract write transaction.
@@ -17,7 +17,7 @@ export async function executeContractWrite(
     config: ContractWriteConfig,
     gasGuardian: GasGuardian,
     publicClient: PublicClient
-): Promise<void> {
+): Promise<Hash> {
     try {
         // Determine args
         let args = config.staticArgs || [];
@@ -47,6 +47,7 @@ export async function executeContractWrite(
         });
 
         gasGuardian.recordUsage(estimatedGas);
+        return hash;
     } catch (error) {
         throw error;
     }

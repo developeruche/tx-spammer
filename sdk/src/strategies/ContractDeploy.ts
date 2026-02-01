@@ -17,7 +17,7 @@ export async function executeContractDeploy(
     config: ContractDeployConfig,
     gasGuardian: GasGuardian,
     publicClient: PublicClient
-): Promise<void> {
+): Promise<Hash> {
     const bytecode = config.bytecode as `0x${string}`;
     const args = config.args || [];
 
@@ -44,6 +44,7 @@ export async function executeContractDeploy(
         });
 
         gasGuardian.recordUsage(estimatedGas);
+        return hash;
     } catch (error) {
         throw error;
     }
