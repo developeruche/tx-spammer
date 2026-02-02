@@ -12,7 +12,7 @@ async function verify() {
         chainId: 31337,
         maxGasLimit: 30_000_000n,
         concurrency: 2,
-        durationSeconds: 2,
+        durationSeconds: 0,
         strategy: {
             mode: 'transfer',
             amountPerTx: parseEther('0.0001'),
@@ -32,12 +32,18 @@ async function verify() {
         console.log('Spam finished.');
         console.log('Result:', result);
 
-        if (typeof result.blockNumber === 'bigint' && (result.txHash === null || result.txHash.startsWith('0x'))) {
-            console.log('Verification SUCCEEDED: Returned valid blockNumber and txHash structure.');
+        if (
+            typeof result.blockNumber === 'bigint' &&
+            (result.txHash === null || result.txHash.startsWith('0x')) &&
+            typeof result.totalGasUsed === 'bigint' &&
+            typeof result.finalBlockGasUsed === 'bigint'
+        ) {
+            console.log('Verification SUCCEEDED: Returned valid SpamResult structure.');
+            console.log(`Total Gas Used: ${result.totalGasUsed}, Final Block Gas: ${result.finalBlockGasUsed}`);
             process.exit(0);
         } else {
             console.error('Verification FAILED: Invalid return structure.');
-            console.error('Expected { blockNumber: bigint, txHash: Hash | null }, got:', result);
+            console.error('Expected SpamResult, got:', result);
             process.exit(1);
         }
 

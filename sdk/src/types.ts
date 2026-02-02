@@ -123,7 +123,7 @@ export const SpamSequenceConfigSchema = z.object({
     /** The selected spam strategy configuration. */
     strategy: SpamStrategySchema,
     /** Optional duration in seconds to run the spam sequence. */
-    durationSeconds: z.number().int().positive().optional(),
+    durationSeconds: z.number().int().nonnegative().optional(),
     /** Optional maximum total transactions to attempts (if implemented). */
     totalTxs: z.number().int().positive().optional(),
 });
@@ -144,3 +144,17 @@ export type MixedStrategyConfig = z.infer<typeof MixedStrategyConfigSchema>;
 export type SpamStrategyConfig = z.infer<typeof SpamStrategySchema>;
 /** TypeScript type alias for the full Spam Sequence config. */
 export type SpamSequenceConfig = z.infer<typeof SpamSequenceConfigSchema>;
+
+/**
+ * Result returned after the spam sequence completes.
+ */
+export interface SpamResult {
+    /** The block number of the last transaction mined (or current block if no txs). */
+    blockNumber: bigint;
+    /** The hash of the last transaction sent, if any. */
+    txHash: Hex | null;
+    /** Total cumulative gas used by all transactions in this sequence (local estimate). */
+    totalGasUsed: bigint;
+    /** The total gas used in the block corresponding to blockNumber. */
+    finalBlockGasUsed: bigint;
+}

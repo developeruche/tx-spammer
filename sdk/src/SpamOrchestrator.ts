@@ -11,7 +11,7 @@ import {
 } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { mainnet } from 'viem/chains';
-import { SpamSequenceConfig, SpamSequenceConfigSchema } from './types';
+import { SpamSequenceConfig, SpamSequenceConfigSchema, SpamResult } from './types';
 import { GasGuardian } from './GasGuardian';
 import { Worker } from './Worker';
 import {
@@ -127,7 +127,7 @@ export class SpamOrchestrator {
      *
      * Stops when the duration expires or gas limits are reached.
      */
-    public async start(): Promise<{ blockNumber: bigint; txHash: Hash | null }> {
+    public async start(): Promise<SpamResult> {
         console.log('Starting spam sequence...');
         const strategy = this.config.strategy;
         const duration = this.config.durationSeconds
@@ -135,6 +135,7 @@ export class SpamOrchestrator {
             : Infinity;
         const startTime = Date.now();
         let lastTxHash: Hash | null = null;
+        const activeGuardians: GasGuardian[] = [this.gasGuardian];
 
         // Helper to run a strategy loop for a subset of workers
         const runLoop = async (workers: Worker[], stratConfig: any, guardian: GasGuardian) => {
@@ -220,6 +221,7 @@ export class SpamOrchestrator {
                     Math.floor(Number(this.config.maxGasLimit) * sharePercent)
                 );
                 const subGuardian = new GasGuardian(gasLimitShare);
+                activeGuardians.push(subGuardian);
 
                 console.log(
                     `- Sub-strategy '${subStrat.config.mode}': ${count} workers, ~${gasLimitShare} gas limit`
@@ -236,13 +238,23 @@ export class SpamOrchestrator {
 
         console.log('Spam sequence finished.');
 
+        let blockNumber: bigint;
         if (lastTxHash) {
             console.log(`Waiting for last transaction ${lastTxHash} to be mined...`);
             const receipt = await this.publicClient.waitForTransactionReceipt({ hash: lastTxHash });
-            return { blockNumber: receipt.blockNumber, txHash: lastTxHash };
+            blockNumber = receipt.blockNumber;
         } else {
-            const blockNumber = await this.publicClient.getBlockNumber();
-            return { blockNumber, txHash: null };
+            blockNumber = await this.publicClient.getBlockNumber();
         }
+
+        const statsBlock = await this.publicClient.getBlock({ blockNumber });
+        const totalGasUsed = activeGuardians.reduce((acc, g) => acc + g.gasUsed, 0n);
+
+        return {
+            blockNumber,
+            txHash: lastTxHash,
+            totalGasUsed,
+            finalBlockGasUsed: statsBlock.gasUsed,
+        };
     }
 }
