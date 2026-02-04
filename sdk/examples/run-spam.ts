@@ -52,7 +52,7 @@ async function main() {
                     config: {
                         mode: 'write',
                         targetContract: spammerAddress,
-                        functionName: 'write_one',
+                        functionName: 'spam',
                         abi: SPAMMER_ABI as any,
                         staticArgs: [],
                     },
@@ -73,7 +73,8 @@ async function main() {
 
     try {
         await orchestrator.setup(parseEther('1'));
-        await orchestrator.start();
+        let result = await orchestrator.start();
+        console.log('Spam finished.', result);
     } catch (error) {
         console.error('Spam failed:', error);
     }

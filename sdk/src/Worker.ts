@@ -57,6 +57,17 @@ export class Worker {
     }
 
     /**
+     * Gets the current local nonce without incrementing.
+     * Useful for logic that depends on the next nonce value (e.g. round-robin selection).
+     */
+    public getCurrentNonce(): number {
+        if (this.nonce === null) {
+            throw new Error('Nonce not initialized for worker');
+        }
+        return this.nonce;
+    }
+
+    /**
      * Gets the current local nonce and increments it for the next transaction.
      * Use this to avoid 'nonce too low' errors during rapid fire submission.
      *

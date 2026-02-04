@@ -19,6 +19,7 @@ import {
     executeContractDeploy,
     executeContractRead,
     executeContractWrite,
+    executeMultiContractWrite,
 } from './strategies';
 
 /**
@@ -138,7 +139,12 @@ export class SpamOrchestrator {
         const activeGuardians: GasGuardian[] = [this.gasGuardian];
 
         // Helper to run a strategy loop for a subset of workers
-        const runLoop = async (workers: Worker[], stratConfig: any, guardian: GasGuardian) => {
+        const runLoop = async (
+            workers: Worker[],
+            stratConfig: any,
+            guardian: GasGuardian,
+            onSuccess: () => void
+        ) => {
             const loopTasks = workers.map(async (worker, index) => {
                 while (true) {
                     if (guardian.isLimitReached) break;
@@ -146,6 +152,7 @@ export class SpamOrchestrator {
 
                     try {
                         let txHash: Hash | undefined;
+                        let executed = false;
                         if (stratConfig.mode === 'transfer') {
                             txHash = await executeEthTransfer(
                                 worker,
@@ -153,6 +160,7 @@ export class SpamOrchestrator {
                                 guardian,
                                 this.publicClient as any
                             );
+                            executed = true;
                         } else if (stratConfig.mode === 'deploy') {
                             txHash = await executeContractDeploy(
                                 worker,
@@ -160,6 +168,7 @@ export class SpamOrchestrator {
                                 guardian,
                                 this.publicClient as any
                             );
+                            executed = true;
                         } else if (stratConfig.mode === 'read') {
                             await executeContractRead(
                                 worker,
@@ -167,13 +176,26 @@ export class SpamOrchestrator {
                                 guardian,
                                 this.publicClient as any
                             );
-                        } else if (stratConfig.mode === 'write') {
+                            executed = true;
                             txHash = await executeContractWrite(
                                 worker,
                                 stratConfig,
                                 guardian,
                                 this.publicClient as any
                             );
+                            executed = true;
+                        } else if (stratConfig.mode === 'write_many') {
+                            txHash = await executeMultiContractWrite(
+                                worker,
+                                stratConfig,
+                                guardian,
+                                this.publicClient as any
+                            );
+                            executed = true;
+                        }
+
+                        if (executed) {
+                            onSuccess();
                         }
 
                         if (txHash) {
@@ -190,6 +212,8 @@ export class SpamOrchestrator {
             });
             await Promise.all(loopTasks);
         };
+
+        const stats: { [key: string]: number } = {};
 
         if (strategy.mode === 'mixed') {
             console.log('Executing Mixed Strategy...');
@@ -227,13 +251,23 @@ export class SpamOrchestrator {
                     `- Sub-strategy '${subStrat.config.mode}': ${count} workers, ~${gasLimitShare} gas limit`
                 );
 
-                tasks.push(runLoop(assignedWorkers, subStrat.config, subGuardian));
+                const label = `Strategy ${i} (${subStrat.config.mode})`;
+                stats[label] = 0;
+                tasks.push(
+                    runLoop(assignedWorkers, subStrat.config, subGuardian, () => {
+                        stats[label]++;
+                    })
+                );
             }
 
             await Promise.all(tasks);
         } else {
             // Single Mode
-            await runLoop(this.workers, strategy, this.gasGuardian);
+            const label = `Strategy (${strategy.mode})`;
+            stats[label] = 0;
+            await runLoop(this.workers, strategy, this.gasGuardian, () => {
+                stats[label]++;
+            });
         }
 
         console.log('Spam sequence finished.');
@@ -255,6 +289,7 @@ export class SpamOrchestrator {
             txHash: lastTxHash,
             totalGasUsed,
             finalBlockGasUsed: statsBlock.gasUsed,
+            stats,
         };
     }
 }

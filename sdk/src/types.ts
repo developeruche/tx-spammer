@@ -63,12 +63,32 @@ export const ContractWriteConfigSchema = z.object({
     staticArgs: z.array(z.any()).optional(),
 });
 
+/**
+ * Configuration for multi-contract write operations.
+ * Targets multiple contracts in a round-robin fashion.
+ */
+export const ContractWriteManyConfigSchema = z.object({
+    mode: z.literal('write_many'),
+    /** The target contract addresses to write to. */
+    targetContracts: z.array(z.string().startsWith('0x')),
+    /** The name of the function to call. */
+    functionName: z.string(),
+    /** The contract ABI in JSON format. */
+    abi: z.array(z.any()),
+    /** Optional generator function for dynamic arguments per call. */
+    argsGenerator: z.custom<() => any[]>().optional(),
+    /** Optional static arguments for the function call (used if generator not provided). */
+    staticArgs: z.array(z.any()).optional(),
+});
+
 // Single strategy types for reuse
 const SingleStrategySchema = z.discriminatedUnion('mode', [
     EthTransferConfigSchema,
     ContractDeployConfigSchema,
     ContractReadConfigSchema,
+    ContractReadConfigSchema,
     ContractWriteConfigSchema,
+    ContractWriteManyConfigSchema,
 ]);
 
 /**
@@ -105,6 +125,7 @@ export const SpamStrategySchema = z.discriminatedUnion('mode', [
     ContractDeployConfigSchema,
     ContractReadConfigSchema,
     ContractWriteConfigSchema,
+    ContractWriteManyConfigSchema,
     MixedStrategyConfigSchema,
 ]);
 
@@ -138,6 +159,8 @@ export type ContractDeployConfig = z.infer<typeof ContractDeployConfigSchema>;
 export type ContractReadConfig = z.infer<typeof ContractReadConfigSchema>;
 /** TypeScript type alias for Contract Write config. */
 export type ContractWriteConfig = z.infer<typeof ContractWriteConfigSchema>;
+/** TypeScript type alias for Multi Contract Write config. */
+export type ContractWriteManyConfig = z.infer<typeof ContractWriteManyConfigSchema>;
 /** TypeScript type alias for Mixed Strategy config. */
 export type MixedStrategyConfig = z.infer<typeof MixedStrategyConfigSchema>;
 /** TypeScript type alias for any Spam Strategy config. */
@@ -157,4 +180,8 @@ export interface SpamResult {
     totalGasUsed: bigint;
     /** The total gas used in the block corresponding to blockNumber. */
     finalBlockGasUsed: bigint;
+    /** Breakdown of operations performed by each strategy. Key is strategy label, value is count. */
+    stats: {
+        [key: string]: number;
+    };
 }

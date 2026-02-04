@@ -4,82 +4,75 @@ import { SpamSequenceConfig } from '../src/types';
 import { parseEther, createWalletClient, http, publicActions } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { foundry } from 'viem/chains';
-import * as fs from 'fs';
-import * as path from 'path';
+import { SPAMMER_ABI, SPAMMER_BYTECODE } from './SpammerArtifact';
 
 async function verify() {
     const RPC_URL = 'http://127.0.0.1:8545';
     const ROOT_PRIVATE_KEY = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'; // Anvil default #0
 
-    // Load artifact
-    const artifactPath = path.resolve(__dirname, '../../contract/out/Spammer.sol/Spammer.json');
-    if (!fs.existsSync(artifactPath)) {
-        console.error('Artifact not found at:', artifactPath);
-        process.exit(1);
-    }
-    const artifact = JSON.parse(fs.readFileSync(artifactPath, 'utf8'));
+    console.log('Deploying Spammer contract...');
 
-    // Deploy Spammer contract
-    const account = privateKeyToAccount(ROOT_PRIVATE_KEY as `0x${string}`);
+    // Setup client for deployment
+    const account = privateKeyToAccount(ROOT_PRIVATE_KEY);
     const client = createWalletClient({
         account,
-        chain: foundry,
-        transport: http(RPC_URL),
+        chain: {
+            ...foundry,
+            rpcUrls: { default: { http: [RPC_URL] } }
+        },
+        transport: http(RPC_URL)
     }).extend(publicActions);
 
-    console.log('Deploying Spammer contract...');
+    // Deploy Spammer
     const hash = await client.deployContract({
-        abi: artifact.abi,
-        bytecode: artifact.bytecode.object,
+        abi: SPAMMER_ABI,
+        bytecode: SPAMMER_BYTECODE,
+        args: []
     });
+
     const receipt = await client.waitForTransactionReceipt({ hash });
-    const contractAddress = receipt.contractAddress!;
-    console.log('Spammer deployed at:', contractAddress);
+
+    if (!receipt.contractAddress) {
+        throw new Error('Deployment failed');
+    }
+
+    console.log('Spammer deployed at:', receipt.contractAddress);
+    console.log('Setting up spammer...');
 
     const config: SpamSequenceConfig = {
         rpcUrl: RPC_URL,
         chainId: 31337,
-        maxGasLimit: 30_000_000n,
-        concurrency: 2,
+        maxGasLimit: 60_000_000n,
+        concurrency: 20,
         durationSeconds: 0,
         strategy: {
             mode: 'write',
-            targetContract: contractAddress,
-            functionName: 'write_one',
-            abi: artifact.abi,
-            staticArgs: [],
+            targetContract: receipt.contractAddress,
+            functionName: 'spam',
+            abi: SPAMMER_ABI as any,
+            staticArgs: []
         },
     };
 
-    const orchestrator = new SpamOrchestrator(config, ROOT_PRIVATE_KEY as `0x${string}`);
+    const orchestrator = new SpamOrchestrator(config, ROOT_PRIVATE_KEY);
+    await orchestrator.setup(parseEther('0.1'));
 
-    try {
-        console.log('Setting up spammer...');
-        await orchestrator.setup(parseEther('0.1'));
+    console.log('Starting spam...');
+    const result = await orchestrator.start();
+    console.log('Spam finished.');
 
-        console.log('Starting spam...');
-        const result = await orchestrator.start();
+    console.log('Result:', result);
 
-        console.log('Spam finished.');
-        console.log('Result:', result);
-
-        if (
-            typeof result.blockNumber === 'bigint' &&
-            (result.txHash === null || result.txHash.startsWith('0x')) &&
-            typeof result.totalGasUsed === 'bigint' &&
-            typeof result.finalBlockGasUsed === 'bigint'
-        ) {
-            console.log('Verification SUCCEEDED: Returned valid SpamResult structure.');
-            console.log(`Total Gas Used: ${result.totalGasUsed}, Final Block Gas: ${result.finalBlockGasUsed}`);
-            process.exit(0);
-        } else {
-            console.error('Verification FAILED: Invalid return structure.');
-            console.error('Expected SpamResult, got:', result);
-            process.exit(1);
-        }
-
-    } catch (error) {
-        console.error('Verification FAILED with error:', error);
+    if (
+        result.totalGasUsed > 0n &&
+        result.finalBlockGasUsed > 0n
+    ) {
+        console.log('Verification SUCCEEDED: Returned valid SpamResult structure.');
+        console.log(`Total Gas Used: ${result.totalGasUsed}, Final Block Gas: ${result.finalBlockGasUsed}`);
+        console.log('Stats:', result.stats);
+        process.exit(0);
+    } else {
+        console.error('Verification FAILED: Invalid return structure.');
         process.exit(1);
     }
 }
