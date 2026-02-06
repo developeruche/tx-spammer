@@ -64,7 +64,7 @@ async function main() {
                         bytecode: SPAMMER_BYTECODE,
                         args: [],
                     },
-                }
+                },
             ],
         },
     };

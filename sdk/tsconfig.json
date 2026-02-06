@@ -2,10 +2,7 @@
     "compilerOptions": {
         "target": "ES2022",
         "module": "commonjs",
-        "lib": [
-            "ES2022",
-            "DOM"
-        ],
+        "lib": ["ES2022", "DOM"],
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
@@ -13,14 +10,8 @@
         "outDir": "./dist",
         "rootDir": "./src",
         "declaration": true,
-        "types": [
-            "node"
-        ]
+        "types": ["node"]
     },
-    "include": [
-        "src/**/*"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
 }

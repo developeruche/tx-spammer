@@ -1,4 +1,3 @@
-
 import { SpamOrchestrator } from '../src/SpamOrchestrator';
 import { SpamSequenceConfig } from '../src/types';
 import { parseEther, createWalletClient, http, publicActions } from 'viem';
@@ -18,16 +17,16 @@ async function verify() {
         account,
         chain: {
             ...foundry,
-            rpcUrls: { default: { http: [RPC_URL] } }
+            rpcUrls: { default: { http: [RPC_URL] } },
         },
-        transport: http(RPC_URL)
+        transport: http(RPC_URL),
     }).extend(publicActions);
 
     // Deploy Spammer
     const hash = await client.deployContract({
         abi: SPAMMER_ABI,
         bytecode: SPAMMER_BYTECODE,
-        args: []
+        args: [],
     });
 
     const receipt = await client.waitForTransactionReceipt({ hash });
@@ -50,7 +49,7 @@ async function verify() {
             targetContract: receipt.contractAddress,
             functionName: 'spam',
             abi: SPAMMER_ABI as any,
-            staticArgs: []
+            staticArgs: [],
         },
     };
 
@@ -63,12 +62,11 @@ async function verify() {
 
     console.log('Result:', result);
 
-    if (
-        result.totalGasUsed > 0n &&
-        result.finalBlockGasUsed > 0n
-    ) {
+    if (result.totalGasUsed > 0n && result.finalBlockGasUsed > 0n) {
         console.log('Verification SUCCEEDED: Returned valid SpamResult structure.');
-        console.log(`Total Gas Used: ${result.totalGasUsed}, Final Block Gas: ${result.finalBlockGasUsed}`);
+        console.log(
+            `Total Gas Used: ${result.totalGasUsed}, Final Block Gas: ${result.finalBlockGasUsed}`
+        );
         console.log('Stats:', result.stats);
         process.exit(0);
     } else {

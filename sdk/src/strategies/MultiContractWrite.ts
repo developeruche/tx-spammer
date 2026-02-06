@@ -42,6 +42,8 @@ export async function executeMultiContractWrite(
 
         gasGuardian.checkLimit(estimatedGas);
 
+        console.log('Target contract: ', targetContract);
+
         const hash = await worker.client.writeContract({
             address: targetContract as `0x${string}`,
             abi: config.abi,

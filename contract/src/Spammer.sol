@@ -1,21 +1,67 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
-
-import "./Spam.sol";
+pragma solidity ^0.8.18;
 
 contract Spammer {
-    function write_one() public {
-        Spam spam = new Spam();
-        spam.write_one();
+    mapping(address => mapping(address => mapping(address => uint256)))
+        public map1;
+    mapping(address => mapping(address => mapping(address => uint256)))
+        public map2;
+    mapping(address => mapping(address => mapping(address => uint256)))
+        public map3;
+
+    uint256 private nonce;
+
+    constructor() {
+        spam();
     }
 
-    function write_two() public {
-        Spam spam = new Spam();
-        spam.write_two();
+    function spam() public {
+        address k1 = _randomAddr("k1");
+        address k2 = _randomAddr("k2");
+        address k3 = _randomAddr("k3");
+
+        uint256 val = _randomUint("val");
+
+        map1[k1][k2][k3] = val;
+        map2[k1][k2][k3] = val;
+        map3[k1][k2][k3] = val;
+
+        nonce++;
     }
 
-    function write_three() public {
-        Spam spam = new Spam();
-        spam.write_three();
+    function _randomAddr(string memory seed) internal view returns (address) {
+        return
+            address(
+                uint160(
+                    uint256(
+                        keccak256(
+                            abi.encode(
+                                block.timestamp,
+                                block.prevrandao,
+                                msg.sender,
+                                block.number,
+                                nonce,
+                                seed
+                            )
+                        )
+                    )
+                )
+            );
+    }
+
+    function _randomUint(string memory seed) internal view returns (uint256) {
+        return
+            uint256(
+                keccak256(
+                    abi.encode(
+                        block.timestamp,
+                        block.prevrandao,
+                        msg.sender,
+                        block.number,
+                        nonce,
+                        seed
+                    )
+                )
+            );
     }
 }

@@ -20,6 +20,8 @@ import {
     executeContractRead,
     executeContractWrite,
     executeMultiContractWrite,
+    executeBlastLargeContracts,
+    executeBatchToucher,
 } from './strategies';
 
 /**
@@ -146,6 +148,11 @@ export class SpamOrchestrator {
             onSuccess: () => void
         ) => {
             const loopTasks = workers.map(async (worker, index) => {
+                const context = {
+                    workerIndex: index,
+                    totalWorkers: workers.length,
+                };
+
                 while (true) {
                     if (guardian.isLimitReached) break;
                     if (Date.now() - startTime > duration) break;
@@ -190,6 +197,23 @@ export class SpamOrchestrator {
                                 stratConfig,
                                 guardian,
                                 this.publicClient as any
+                            );
+                            executed = true;
+                        } else if (stratConfig.mode === 'blast_large_contracts') {
+                            txHash = await executeBlastLargeContracts(
+                                worker,
+                                stratConfig,
+                                guardian,
+                                this.publicClient as any
+                            );
+                            executed = true;
+                        } else if (stratConfig.mode === 'batch_toucher') {
+                            txHash = await executeBatchToucher(
+                                worker,
+                                stratConfig,
+                                guardian,
+                                this.publicClient as any,
+                                context
                             );
                             executed = true;
                         }

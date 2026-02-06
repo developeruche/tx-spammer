@@ -81,6 +81,34 @@ export const ContractWriteManyConfigSchema = z.object({
     staticArgs: z.array(z.any()).optional(),
 });
 
+/**
+ * Configuration for Blast Large Contracts mode.
+ * Rapidly deploys garbage contracts to stress state.
+ */
+export const BlastLargeContractsConfigSchema = z.object({
+    mode: z.literal('blast_large_contracts'),
+    /** Number of contracts to deploy. */
+    contractCount: z.number().int().positive(),
+    /** Size of each contract's bytecode in bytes. */
+    codeSize: z.number().int().positive(),
+    /** Path to save the deployed addresses. */
+    outputFile: z.string(),
+});
+
+/**
+ * Configuration for Batch Toucher mode.
+ * Reads existing contract addresses and 'touches' them to load into witness.
+ */
+export const BatchToucherConfigSchema = z.object({
+    mode: z.literal('batch_toucher'),
+    /** Path to read the target addresses from. */
+    inputFile: z.string(),
+    /** Number of addresses to touch in a single transaction (multicall). */
+    batchSize: z.number().int().positive().default(50),
+    /** Address of the BatchToucher contract. */
+    toucherAddress: z.string().startsWith('0x'),
+});
+
 // Single strategy types for reuse
 const SingleStrategySchema = z.discriminatedUnion('mode', [
     EthTransferConfigSchema,
@@ -89,6 +117,8 @@ const SingleStrategySchema = z.discriminatedUnion('mode', [
     ContractReadConfigSchema,
     ContractWriteConfigSchema,
     ContractWriteManyConfigSchema,
+    BlastLargeContractsConfigSchema,
+    BatchToucherConfigSchema,
 ]);
 
 /**
@@ -126,6 +156,8 @@ export const SpamStrategySchema = z.discriminatedUnion('mode', [
     ContractReadConfigSchema,
     ContractWriteConfigSchema,
     ContractWriteManyConfigSchema,
+    BlastLargeContractsConfigSchema,
+    BatchToucherConfigSchema,
     MixedStrategyConfigSchema,
 ]);
 
@@ -161,6 +193,10 @@ export type ContractReadConfig = z.infer<typeof ContractReadConfigSchema>;
 export type ContractWriteConfig = z.infer<typeof ContractWriteConfigSchema>;
 /** TypeScript type alias for Multi Contract Write config. */
 export type ContractWriteManyConfig = z.infer<typeof ContractWriteManyConfigSchema>;
+/** TypeScript type alias for Blast Large Contracts config. */
+export type BlastLargeContractsConfig = z.infer<typeof BlastLargeContractsConfigSchema>;
+/** TypeScript type alias for Batch Toucher config. */
+export type BatchToucherConfig = z.infer<typeof BatchToucherConfigSchema>;
 /** TypeScript type alias for Mixed Strategy config. */
 export type MixedStrategyConfig = z.infer<typeof MixedStrategyConfigSchema>;
 /** TypeScript type alias for any Spam Strategy config. */

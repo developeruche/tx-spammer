@@ -1,7 +1,4 @@
-import {
-    SpamOrchestrator,
-    SpamSequenceConfig,
-} from '../src/index';
+import { SpamOrchestrator, SpamSequenceConfig } from '../src/index';
 import { parseEther, createWalletClient, http, publicActions } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { foundry } from 'viem/chains';
@@ -16,16 +13,16 @@ async function deploySpammer(index: number) {
         account,
         chain: {
             ...foundry,
-            rpcUrls: { default: { http: [RPC_URL] } }
+            rpcUrls: { default: { http: [RPC_URL] } },
         },
-        transport: http(RPC_URL)
+        transport: http(RPC_URL),
     }).extend(publicActions);
 
     console.log(`Deploying Spammer #${index}...`);
     const hash = await client.deployContract({
         abi: SPAMMER_ABI,
         bytecode: SPAMMER_BYTECODE,
-        args: []
+        args: [],
     });
     const receipt = await client.waitForTransactionReceipt({ hash });
     return receipt.contractAddress!;
@@ -72,7 +69,6 @@ async function main() {
             console.error('FAILURE: No transactions sent.');
             process.exit(1);
         }
-
     } catch (e) {
         console.error('Error during spam:', e);
         process.exit(1);
