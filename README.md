@@ -50,6 +50,43 @@ await orchestrator.start(); // Unleash the flood
 - **Mixed Strategy**: Define complex load profiles (e.g., "60% Writes, 30% Reads, 10% Deploys").
 - **Zero Config**: Works out-of-the-box with Anvil and other Foundry tools.
 
+## Advanced Strategies
+
+### 1. Blast Large Contracts (`blast_large_contracts`)
+Deploys randomly generated contracts with **24KB of garbage bytecode**.
+- **Purpose**: Rapidly bloat the chain state and fill block space with large deployments.
+- **Mechanism**:
+    - Generates unique garbage bytecode for every transaction.
+    - Wraps bytecode in a valid deployment preamble to ensure it is stored as runtime code.
+    - Uses a high gas limit (~6M) to accommodate large payloads.
+    - logs deployed addresses to a file.
+
+```typescript
+const strategy = {
+    mode: 'blast_large_contracts',
+    codeSize: 24 * 1024, // 24KB
+    count: 1000,
+    outputFile: './deployed_addresses.txt'
+};
+```
+
+### 2. Batch Toucher (`batch_toucher`)
+Reads a list of addresses and "touches" them (loads their state) in batches.
+- **Purpose**: Stress-test the execution client's state access and witness generation patterns (e.g., verifying `verkle` or `merkle` witness performance).
+- **Mechanism**:
+    - **Deterministic Partitioning**: Workers automatically partition the address list among themselves to ensure **100% disjoint coverage** with zero overlap.
+    - Calls a `touchBatch(address[])` function on a helper contract.
+    - Forces the EVM to load the account and code for every address in the batch.
+
+```typescript
+const strategy = {
+    mode: 'batch_toucher',
+    inputFile: './deployed_addresses.txt',
+    batchSize: 50,
+    toucherAddress: '0x...' // Address of the BatchToucher contract
+};
+```
+
 ## Development
 
 ```bash
