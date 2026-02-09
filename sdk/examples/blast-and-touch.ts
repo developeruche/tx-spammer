@@ -121,6 +121,31 @@ async function main() {
                 .split('\n')
                 .filter((l) => l);
             console.log(`Generated ${lines.length} addresses.`);
+
+            // VERIFICATION: Check code using cast
+            const sampleAddress = lines[0];
+            if (sampleAddress) {
+                console.log(`\n[Verification] Checking code for ${sampleAddress} using 'cast'...`);
+                try {
+                    const castProcess = spawn('cast', ['code', sampleAddress, '--rpc-url', RPC_URL]);
+                    let output = '';
+                    for await (const chunk of castProcess.stdout) {
+                        output += chunk;
+                    }
+                    // Sanitize output for display
+                    const cleanOutput = output.trim();
+                    console.log(`[Verification] cast code output length: ${cleanOutput.length} bytes (hex string)`);
+                    if (cleanOutput === '0x' || cleanOutput.length <= 2) {
+                        console.error('[Verification] FAILURE: Contract has no code!');
+                    } else {
+                        console.log('[Verification] SUCCESS: Contract code found.');
+                        console.log(`[Verification] Snippet: ${cleanOutput.slice(0, 60)}...`);
+                    }
+                } catch (e) {
+                    console.error('[Verification] Failed to run cast:', e);
+                }
+            }
+
         } else {
             console.error('Failed to generate address file.');
             throw new Error('Address file generation failed');
